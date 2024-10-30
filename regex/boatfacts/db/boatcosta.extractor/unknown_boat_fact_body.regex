@@ -1,0 +1,3 @@
+{##boat_fact_in_addition##} *((?:{##ocr_digit##}{1,3}+)|(?:{##ocr_alfa_number##})) *((?:(?:{##boat_fact_vessel##}) de [^\d]{18,30}))
+\w{0,10}? *({##ocr_digit_no_blanc##}{1,3}) +((?:.{4,15}){##boat_fact_of_the_coast##})
+\w{0,10}+ *({##ocr_alfa_number##}) +((?:.{4,15}){##boat_fact_of_the_coast##})

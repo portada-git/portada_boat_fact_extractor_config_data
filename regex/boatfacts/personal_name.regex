@@ -1,0 +1,1 @@
+{##hyphen_proper_noun##}(?:\s*(?:(?:{##hyphen_proper_noun##})|(?:d[eio][s5]?)|(?:la))){0,7}

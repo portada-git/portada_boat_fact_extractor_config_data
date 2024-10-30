@@ -1,0 +1,2 @@
+[i1f]d\.\s*
+{##hyphen_proper_noun##}(?:\s+{##hyphen_proper_noun##})*\s*(?: [y»«] su [cf]arrera\s+)?
