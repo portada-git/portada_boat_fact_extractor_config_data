@@ -1,0 +1,24 @@
+{
+    "boatdata.extractor":{
+        "field_version": "boat_fact-00.00.00",
+        "constants": {"arrival_port":"Marseille"},
+        "config":[
+            {
+                "approach_type":"regex",
+                "configuration":{
+                    "main_regex":"date",
+                    "max_groups":1,
+                    "fields_to_extract":[
+                        {
+                            "temporary_field": true,
+                            "key":"day_of_arrival",
+                            "copy_last_value":true,
+                            "default_value":"?"
+                        }
+                
+                    ]
+                }
+            }
+        ]
+    }
+}
