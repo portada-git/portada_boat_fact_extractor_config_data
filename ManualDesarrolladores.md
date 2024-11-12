@@ -19,6 +19,7 @@ Una vez unidos todos los bloques en un único cabe segregar el texto objetivo do
 
 #### Analizador para extraer la información
 La última de las funcionalidades tiene como objetivo extraer los datos contenidos en el texto de las noticias, clasificándolo en categorías predefinidas a las que llamaremos campos. Estos son:
+
 __model_version__: Indica la versión del nombre del campo model.
 
 __publication_date__: Muestra la fecha del periódico
@@ -67,7 +68,7 @@ __ship_agent__: Esta información puede indicar tanto el agente del buque, es de
 
 __ship_crew__: Es el valor numérico de la tripulación del buque.
 
-__ship_cargo_list__: Es la descripción de la lista con la información relativa a toda la carga transportada por el buque entrante (tipo de carga, cantidad, persona receptora de la carga, si la hay o “a la orden” en caso contrario, etc.). Inicalmente se mostrará como descripción textual separada por comas, però en una segunda fase, cada mercancia se descompondrà en los 6 siguientes campos.
+__ship_cargo_list__: Es la descripción de la lista con la información relativa a toda la carga transportada por el buque entrante (tipo de carga, cantidad, persona receptora de la carga, si la hay o “a la orden” en caso contrario, etc.). Inicialmente, se mostrará como descripción textual separada por comas, pero en una segunda fase, cada mercancía se descompondrá en los 6 siguientes campos.
 
 __cargo_merchant__: Es la persona a la que iba destinada la carga, muchas veces será el comerciante que la había comprado y que se hizo cargo de ella en el momento de la descarga. Indica el destinatario de la carga, con ocasional mención a “divers” [varios/diversos].
 En este caso vemos nombres de personas o empresas. Estos nombres tienen las mismas características y dificultades que el resto de denominaciones. En ocasiones los barcos llegaban a carga completa y estaban destinados a la misma persona, y en otros casos, cada carga tenía su destinatario. También aparece con frecuencia la expresión “a la orden”, que en principio es una carga para ser vendida a su llegada a puerto y que, por el contrario, no tiene un propietario anterior, más allá del propio capitán personalmente o por cuenta de alguien.
@@ -76,7 +77,7 @@ __cargo_type__: Expresa los productos o tipos de mercancías que han llegado. Es
 
 __cargo_value__: Expresión numérica del importe de la carga
 
-__cargo_unit__: Expresa las unidades en las que aparece la carga. Éstas pueden ser unidades de peso, volumen, recuentos o unidades relativas al embalaje.
+__cargo_unit__: Expresa las unidades en las que aparece la carga. Estas pueden ser unidades de peso, volumen, recuentos o unidades relativas al embalaje.
 
 __cargo_origin__: Puerto de origen de la carga
 
@@ -88,4 +89,6 @@ __ship_forced_arrival__: Indicación sobre las causas de la llegada forzosa
 
 __ship_amount__: Este campo aparece únicamente en modelos cuantitativos donde, en lugar de especificar la información de cada buque, se indica el número de buques que han llegado o están a punto de llegar. Normalmente, se trata de un modelo específicamente pensado para el transporte de cabotaje.
 
-__ship_origin_area__: Este campo aparece únicamente en modelos cuantitativos donde, en lugar de especificar la información de cada buque, se utiliza la zona de origen o de transporte. Normalmente se trata de un modelo específicamente destinado al transporte de cabotaje.
+__ship_origin_area__: Este campo aparece únicamente en modelos cuantitativos donde, en lugar de especificar la información de cada buque, se utiliza la zona de origen o de transporte. Normalmente, se trata de un modelo específicamente destinado al transporte de cabotaje.
+
+En este caso existirán dos enfoques metodológicos para realizar la extracción, seleccionables mediante un atributo en el fichero de configuración (ver el apartado de configuración).  Uno de ellos estará basado en expresiones regulares (compuestas también siguiendo la metodología usada por la biblioteca _jportada_auto_news_extractor_lib_ que se explicará más adelante). El otro enfoque se basará en el uso de inteligencia artificial generativa (concretamente OpenAI).  
