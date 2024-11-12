@@ -1,4 +1,3 @@
-
 # Configuración para la extracción de datos
 ## Manual para desarrolladores: Extracción de información de noticias en el contexto del proyecto portada
 Este manual se ha creado básicamente para ayudar a los desarrolladores del proyecto **_PortAda_** a configurar la aplicación *[jportada_boat_fact_extractor](https://github.com/portada-git/jportada_boat_fact_extractor)* para conseguir extraer los datos referentes a las embarcaciones llegadas a los diferentes puertos de estudio referenciadas en los periódicos estudiados.
