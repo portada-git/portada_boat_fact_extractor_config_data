@@ -144,6 +144,24 @@ En el fichero de configuración se admiten todos los argumentos aceptados por co
 
 #### conjunto de expresiones regulares
 
-...
+A fin de poder generar expresiones regulares complejas, la biblioteca _jportada_auto_news_extractor_lib_ permite definir múltiples ficheros con expresiones regulares parciales que pueden ser usadas para componer nuevas expresiones regulares, las cuales podrían ser usadas de nuevo, recursivamente, como componentes de otras expresiones. 
+Una expresión compuesta podría ser: 
+```
+^(.*{##embarcaciones##} {##llegadas##} .{2,7} {##puerto##}.{8,25})\s+$
+``` 
+Esta expresión buscaría el contenido del fichero _embarcaciones.regex_ y reemplazaría la posición ocupada por `{##embarcacione##}` con el contenido encontrado en el fichero. También buscaría el fichero _llegadas.regex_ y el fichero _puerto.regex_ realizando la misma operación de reemplazo. Imaginemos que ese fichero contenga la expresión:
+```
+[EA]{2,3}barca.{2,4}nes
+``` 
 
-#### 
+
+
+#### Configuración del extractor
+
+
+
+
+## Aplicación _jportada_boat_fact_extractor_
+
+
+## Repositorio de configuración _portada_boat_fact_extractor_config_data_
