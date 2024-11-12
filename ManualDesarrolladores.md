@@ -100,53 +100,47 @@ Seguidamente, describiremos con más detalles estos 3 sistemas  de configuració
 
 #### Inicialización o configuración inicial
  El sistema se inicializa mediante argumentos pasados desde el sistema y también mediante un fichero típico de configuración (ini, properties, ...) el cual contiene en cada línea el nombre de un atributo junto a su valor separado por ":".  Por defecto, la biblioteca busca un fichero llamado _init.properties_ en el directorio de ejecución o en el subdirectorio llamado _config_, pero se le puede pasar otra ubicación usando el argumento -c [RUTA_INIT_PROPERTIES] desde el sistema. Casi todos los atributos permitidos en el fichero se pueden pasar usando el sistema (consola). De esta forma se puede decidir qué argumentos se pasan desde el fichero y qué otros desde el sistema. En caso de que se pasaran argumentos repetidos por fichero y consola, estos últimos tendría siempre prioridad sobre los definidos en el fichero. Desde la consola los atributos a pasar son:
--h, --help show this help message and exit
- -c [INIT_CONFIG_FILE], --init_config_file [INIT_CONFIG_FILE]  Camino donde se encuentra el archivo de configuración  (default: config)
- -d [ORIGIN_DIR], --origin_dir [ORIGIN_DIR]  Directorio de dónde leer los archivos OCR con las  noticias
- -o [OUTPUT_FILE], --output_file [OUTPUT_FILE]  Camino al archivo de salida. Por ejemplo: -o c:  /directorio/nombre_archivo
- -a [APPENDOUTPUTFILE], --appendOutputFile [APPENDOUTPUTFILE]  Indica si se desea añadir los barcos extraídos al final del archivo de salida o se crea un nuevo  archivo en cada extracción. Solo acepta los valores  '[s]i', '[y]es', '[c]ert', '[t]rue' como verdaderos. El resto de valores se consideran falsos.
- -x [FILE_EXTENSION], --file_extension [FILE_EXTENSION]  Indica qué extensión deben tener los archivos en  leer
- -r [REGEXBASEPATH], --regexBasePath [REGEXBASEPATH]  Directorio donde se encuentran especificadas las  expresiones regulares del análisis 
- -f [FACT_MODEL], --fact_model [FACT_MODEL] Indica qué tipo de hecho o noticia que se deberá analizar. En el caso del proyecto PorTAda, el tipo de hecho es _boatfacts_.
- -n [NEWSPAPER], --newspaper [NEWSPAPER] Indica qué nombre del periódico usado para extraer la notícia (db, sm, lp, dm, en, ...).
- -oe [OCR_ENGINE_MODEL], --ocr_engine_model [OCR_ENGINE_MODEL]
-Permite indicar qué modelos de expresiones regulares es necesario aplicar, en caso de que el motor OCR se comporte de manera específica.
- -p [PARSE_MODEL], --parse_model [PARSE_MODEL]  Indica qué modelos de analizador (parser) es necesario usar. Esto es, un nombre identificador del tipo de patrón con el que está escrita la noticia a extraer.
- -pcf [PARSER_CONFIG_JSON_FILE], --parser_config_json_file [PARSER_CONFIG_JSON_FILE] Indica cuál es el archivo JSON de configuración del exctractor.
--tfb_pck [TARGET_FRAGMENT_BREAKER_PROXY_PACKAGES_TO_SEARCH], --target_fragment_breaker_proxy_packages_to_search [TARGET_FRAGMENT_BREAKER_PROXY_PACKAGES_TO_SEARCH] Indica en qué paquetes el proxy buscará los distintos enfoques de los segregadores de fragmentos-objetivo. 
--iub_pck [INFORMATION_UNIT_BUILDER_PROXY_PACKAGES_TO_SEARCH], --information_unit_builder_proxy_packages_to_search [INFORMATION_UNIT_BUILDER_PROXY_PACKAGES_TO_SEARCH] Indica en qué paquetes el proxy buscará los distintos enfoques de los constructores de unidades de información. 
- -dex_pck [DATA_EXTRACT_PROXY_PACKAGES_TO_SEARCH], --data_extract_proxy_packages_to_search [DATA_EXTRACT_PROXY_PACKAGES_TO_SEARCH] Indica en qué paquetes el proxy buscará los distintos enfoques de los extractores de información. 
- -decb_pck [DATA_EXTRACT_CALCULATOR_BUILDER_PACKAGES_TO_SEARCH], --data_extract_calculator_builder_packages_to_search [DATA_EXTRACT_CALCULATOR_BUILDER_PACKAGES_TO_SEARCH] Indica en qué paquetes el proxy buscará las distintas clases de calculadores de campos. 
- -fbapp [FRAGMENT_BREAKER_APPROACH], --fragment_breaker_approach [FRAGMENT_BREAKER_APPROACH]  Indica qué enfoque metodológico se usa para separar los fragmentos-objetivo. Actualmente, solo en enfoque "regex" (basado en expresiones regulares) se encuentra implementado.
- -exapp [EXTRACTOR_APPROACH], --extractor_approach [EXTRACTOR_APPROACH]  Indica qué enfoque metodológico se utiliza para
+
+**-h**, **--help** show this help message and exit
+ 
+**-c** *[INIT_CONFIG_FILE]*, **--init_config_file** *[INIT_CONFIG_FILE]*  Camino donde se encuentra el archivo de configuración  (default: config)
+ 
+**-d** *[ORIGIN_DIR]*, **--origin_dir** *[ORIGIN_DIR]*  Directorio de dónde leer los archivos OCR con las  noticias
+ 
+**-o** *[OUTPUT_FILE]*, **--output_file** *[OUTPUT_FILE]*  Camino al archivo de salida. Por ejemplo: -o c:  /directorio/nombre_archivo
+ 
+**-a** *[APPENDOUTPUTFILE]*, **--appendOutputFile** *[APPENDOUTPUTFILE]*  Indica si se desea añadir los barcos extraídos al final del archivo de salida o se crea un nuevo  archivo en cada extracción. Solo acepta los valores  '[s]i', '[y]es', '[c]ert', '[t]rue' como verdaderos. El resto de valores se consideran falsos.
+ 
+**-x** *[FILE_EXTENSION]*, **--file_extension** *[FILE_EXTENSION]*  Indica qué extensión deben tener los archivos en  leer
+ 
+**-r** *[REGEXBASEPATH]*, **--regexBasePath** *[REGEXBASEPATH]*  Directorio donde se encuentran especificadas las  expresiones regulares del análisis 
+ 
+**-f** *[FACT_MODEL]*, **--fact_model** *[FACT_MODEL]* Indica qué tipo de hecho o noticia que se deberá analizar. En el caso del proyecto PorTAda, el tipo de hecho es _boatfacts_.
+ 
+**-n** *[NEWSPAPER]*, **--newspaper** *[NEWSPAPER]* Indica qué nombre del periódico usado para extraer la notícia (db, sm, lp, dm, en, ...).
+ 
+**-oe** *[OCR_ENGINE_MODEL]*, **--ocr_engine_model** *[OCR_ENGINE_MODEL]* Permite indicar qué modelos de expresiones regulares es necesario aplicar, en caso de que el motor OCR se comporte de manera específica.
+ 
+**-p** *[PARSE_MODEL]*, **--parse_model** *[PARSE_MODEL]*  Indica qué modelos de analizador (parser) es necesario usar. Esto es, un nombre identificador del tipo de patrón con el que está escrita la noticia a extraer.
+ 
+**-pcf** *[PARSER_CONFIG_JSON_FILE]*, **--parser_config_json_file** *[PARSER_CONFIG_JSON_FILE]* Indica cuál es el archivo JSON de configuración del exctractor.
+
+**-tfb_pck** *[TARGET_FRAGMENT_BREAKER_PROXY_PACKAGES_TO_SEARCH]*, **--target_fragment_breaker_proxy_packages_to_search** *[TARGET_FRAGMENT_BREAKER_PROXY_PACKAGES_TO_SEARCH]* Indica en qué paquetes el proxy buscará los distintos enfoques de los segregadores de fragmentos-objetivo. 
+
+**-iub_pck** *[INFORMATION_UNIT_BUILDER_PROXY_PACKAGES_TO_SEARCH]*, **--information_unit_builder_proxy_packages_to_search** *[INFORMATION_UNIT_BUILDER_PROXY_PACKAGES_TO_SEARCH]* Indica en qué paquetes el proxy buscará los distintos enfoques de los constructores de unidades de información. 
+
+**-dex_pck** *[DATA_EXTRACT_PROXY_PACKAGES_TO_SEARCH]*, **--data_extract_proxy_packages_to_search** *[DATA_EXTRACT_PROXY_PACKAGES_TO_SEARCH]* Indica en qué paquetes el proxy buscará los distintos enfoques de los extractores de información. 
+ 
+**-decb_pck** *[DATA_EXTRACT_CALCULATOR_BUILDER_PACKAGES_TO_SEARCH]*, **--data_extract_calculator_builder_packages_to_search** *[DATA_EXTRACT_CALCULATOR_BUILDER_PACKAGES_TO_SEARCH]* Indica en qué paquetes el proxy buscará las distintas clases de calculadores de campos. 
+ 
+**-fbapp** *[FRAGMENT_BREAKER_APPROACH]*, **--fragment_breaker_approach** *[FRAGMENT_BREAKER_APPROACH]*  Indica qué enfoque metodológico se usa para separar los fragmentos-objetivo. Actualmente, solo en enfoque "regex" (basado en expresiones regulares) se encuentra implementado.
+ 
+**-exapp** *[EXTRACTOR_APPROACH]*, **--extractor_approach** *[EXTRACTOR_APPROACH]*  Indica qué enfoque metodológico se utiliza para
  hacer la extracción. Actualmente, solo en enfoque "regex" (basado en expresiones regulares) se encuentra implementado.
- -rd [RUN_FOR_DEBUGGING], --run_for_debugging [RUN_FOR_DEBUGGING]
- Indica si es necesario ejecutar el proceso en modo  depuración o en modo normal. Los valores: '[s]i', '[y]es', '[c]ert', '[t]rue', '[v]ertader' se toman como
- valores ciertos, cualquier otro valor se considerará falso.
+ 
+**-rd** *[RUN_FOR_DEBUGGING]*, **--run_for_debugging** *[RUN_FOR_DEBUGGING]* Indica si es necesario ejecutar el proceso en modo  depuración o en modo normal. Los valores: '[s]i', '[y]es', '[c]ert', '[t]rue', '[v]ertader' se toman como valores ciertos, cualquier otro valor se considerará falso.
 
-En el fichero de configuración 
-
-target_fragment_breaker_proxy_packages_to_search=org.elsquatrecaps.autonewsextractor.targetfragmentbreaker.cutter
-information_unit_builder_proxy_packages_to_search=org.elsquatrecaps.autonewsextractor.informationunitbuilder.reader
-data_extract_proxy_packages_to_search=org.elsquatrecaps.autonewsextractor.dataextractor.parser
-data_extract_calculator_builder_packages_to_search=org.elsquatrecaps.autonewsextractor.dataextractor.calculators
-run_for_debugging=yes
-file_extension=txt
-origin_dir=text_data_db
-output_file=resultats/dadesVaixells
-appendOutputFile=no
-fact_model=boatfacts
-newspaper=db
-parse_model=[boatdata.extractor,boatcosta.extractor]
-ocr_engine_model=documentAI
-extractor_approach=regex
-
-informationUnitBuilderType=file_name
-metadataSource=sdl_file_name
-fragment_breaker_approach=regex
-
-parser_config_json_file=config/conf_db/extractor_config.json
-regexBasePath=config/regex
+En el fichero de configuración se admiten todos los argumentos aceptados por consola en su versión larga. Además, dicho fichero acepta otros parámetros relativos al sistema de registro (logs).
 
 #### conjunto de expresiones regulares
 
