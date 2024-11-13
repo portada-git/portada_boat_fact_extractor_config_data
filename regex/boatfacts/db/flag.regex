@@ -1,4 +1,4 @@
-^(.*{##embarcaciones##} {##llegadas##} .{2,7} p[uo][eo]rt[oe].*)\n+({##mercantes##}) (.*)\.?$
+^(.*{##embarcaciones##} {##llegadas##} .{2,7} {##puerto##}.*)\n+({##mercantes##}) (.*)\.?$
 ^( )?({##mercantes##}) (.*)\.?\n+
 ^( )?({##idem##}) ?(.{4,20})\.?\n+(?=De)
 ^( )?({##idem##}) (.{4,15})\.?\n+
