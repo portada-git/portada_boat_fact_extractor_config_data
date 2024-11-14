@@ -1,1 +1,0 @@
-{##boat_fact_from##}.+?{##boat_fact_trip_duration##}.*?d[eé]\s+({##ocr_digit##}{1,})\s*({##boat_fact_tonnage_units##}).+?({##boat_fact_responsible_position##})\s*.+?((?:(?:co[mn](?:\s+|.{0,5}{##ocr_digit##}))|(?:[eco]n lastre)|(?:á las)).*)

@@ -1,0 +1,7 @@
+{
+    "extractor":{
+        "field_version": "boat_fact-00.00.00",
+        "constants": {"arrival_port":"Buenos Aires"},
+        "config":[]
+    }
+}
