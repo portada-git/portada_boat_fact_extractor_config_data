@@ -146,7 +146,7 @@
                             "key": "ship_travel_time_unit"
                         },
                         {
-                            "calculator": "ShipArrivalDateCalculator",
+                            "calculator": "PreviousDateFromElapsedDaysCalculator",
                             "fieldParams": [
                                 "extracted_data.elapsed_days_from_arrival",
                                 "extracted_data.publication_date"
@@ -154,11 +154,11 @@
                             "key": "ship_arrival_date"
                         },
                         {
-                            "calculator": "ShipDepartureDateCalculator",
+                            "calculator": "PreviousDateFromElapsedTimeCalculator",
                             "fieldParams": [
-                                "extracted_data.ship_arrival_date",
                                 "extracted_data.ship_travel_time",
-                                "extracted_data.ship_travel_time_unit"
+                                "extracted_data.ship_travel_time_unit",
+                                "extracted_data.ship_arrival_date"
                             ],
                             "key": "ship_departure_date"
                         }
@@ -245,7 +245,7 @@
                             "literalParams": ["arrival_port"]
                         },
                         {
-                            "calculator": "ShipArrivalDateCalculator",
+                            "calculator": "PreviousDateFromElapsedDaysCalculator",
                             "fieldParams": [
                                 "extracted_data.elapsed_days_from_arrival",
                                 "extracted_data.publication_date"
