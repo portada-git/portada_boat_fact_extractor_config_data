@@ -1,6 +1,6 @@
 {
     "boatdata.extractor": {
-        "field_version": "boat_fact-00.00.00",
+        "field_version": "boat_fact-00.00.01",
         "constants": {"arrival_port": "Barcelona"},
         "config": [
             {
@@ -55,17 +55,17 @@
                         {
                             "default_value": "????",
                             "copy_last_value": false,
-                            "key": "ship_departure_port"
+                            "key": "travel_departure_port"
                         },
                         {
                             "default_value": "??",
                             "copy_last_value": false,
-                            "key": "ship_travel_time"
+                            "key": "travel_duration_value"
                         },
                         {
                             "default_value": "?",
                             "copy_last_value": true,
-                            "key": "ship_travel_time_unit"
+                            "key": "travel_duration_unit"
                         },
                         {
                             "default_value": "????",
@@ -80,7 +80,7 @@
                         {
                             "default_value": "????",
                             "copy_last_value": false,
-                            "key": "ship_tons"
+                            "key": "ship_tons_capacity"
                         },
                         {
                             "temporary_field": true,
@@ -91,24 +91,24 @@
                         {
                             "default_value": "????",
                             "copy_last_value": false,
-                            "key": "ship_master_role"
+                            "key": "master_role"
                         },
                         {
                             "default_value": "????",
                             "copy_last_value": false,
-                            "key": "ship_master_name"
+                            "key": "master_name"
                         },
                         {
                             "default_value": "????",
                             "copy_last_value": false,
-                            "key": "ship_cargo_list"
+                            "key": "cargo_list"
                         }
                     ],
                     "fields_to_calculate": [
                         {
                             "calculator": "DataFromConstantCalculator",
                             "init_data": ["constants"],
-                            "key": "ship_arrival_port",
+                            "key": "travel_arrival_port",
                             "literalParams": ["arrival_port"]
                         },
                         {
@@ -118,8 +118,11 @@
                                 "parser_id",
                                 "extracted_data"
                             ],
-                            "key": "ship_port_of_call_list",
-                            "literalParams": ["ship_departure_port"]
+                            "params": [{
+                                "type": "fieldName",
+                                "value": "travel_departure_port"
+                            }],
+                            "key": "travel_port_of_call_list"
                         },
                         {
                             "calculator": "ReplaceIdemByValueCalculator",
@@ -128,10 +131,10 @@
                                 "parser_id"
                             ],
                             "fieldParams": [
-                                "extracted_data.ship_travel_time",
-                                "last_extracted_data.ship_travel_time"
+                                "extracted_data.travel_duration_value",
+                                "last_extracted_data.travel_duration_value"
                             ],
-                            "key": "ship_travel_time"
+                            "key": "travel_duration_value"
                         },
                         {
                             "calculator": "ReplaceIdemByValueCalculator",
@@ -140,10 +143,10 @@
                                 "parser_id"
                             ],
                             "fieldParams": [
-                                "extracted_data.ship_travel_time_unit",
-                                "last_extracted_data.ship_travel_time_unit"
+                                "extracted_data.travel_duration_unit",
+                                "last_extracted_data.travel_duration_unit"
                             ],
-                            "key": "ship_travel_time_unit"
+                            "key": "travel_duration_unit"
                         },
                         {
                             "calculator": "PreviousDateFromElapsedDaysCalculator",
@@ -151,16 +154,16 @@
                                 "extracted_data.elapsed_days_from_arrival",
                                 "extracted_data.publication_date"
                             ],
-                            "key": "ship_arrival_date"
+                            "key": "travel_arrival_date"
                         },
                         {
                             "calculator": "PreviousDateFromElapsedTimeCalculator",
                             "fieldParams": [
-                                "extracted_data.ship_travel_time",
-                                "extracted_data.ship_travel_time_unit",
-                                "extracted_data.ship_arrival_date"
+                                "extracted_data.travel_duration_value",
+                                "extracted_data.travel_duration_unit",
+                                "extracted_data.travel_arrival_date"
                             ],
-                            "key": "ship_departure_date"
+                            "key": "travel_departure_date"
                         }
                     ],
                     "main_regex": "boat_fact"
@@ -169,7 +172,7 @@
         ]
     },
     "boatcosta.extractor": {
-        "field_version": "boat_fact-00.00.00",
+        "field_version": "boat_fact-00.00.01",
         "constants": {"arrival_port": "Barcelona"},
         "config": [
             {
@@ -234,14 +237,14 @@
                         {
                             "default_value": "????",
                             "copy_last_value": true,
-                            "key": "ship_cargo_list"
+                            "key": "cargo_list"
                         }
                     ],
                     "fields_to_calculate": [
                         {
                             "calculator": "DataFromConstantCalculator",
                             "init_data": ["constants"],
-                            "key": "ship_arrival_port",
+                            "key": "travel_arrival_port",
                             "literalParams": ["arrival_port"]
                         },
                         {
@@ -250,7 +253,7 @@
                                 "extracted_data.elapsed_days_from_arrival",
                                 "extracted_data.publication_date"
                             ],
-                            "key": "ship_arrival_date"
+                            "key": "travel_arrival_date"
                         }
                     ],
                     "main_regex": "unknown_boat_fact"
