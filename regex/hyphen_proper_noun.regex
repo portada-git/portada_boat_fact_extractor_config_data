@@ -1,1 +1,1 @@
-{##ocr_capital_letter##}(?:[\w\\¡!|'\-\.]+)
+{##ocr_capital_letter##}(?:[\w\\¡!|'\-\.:]+)
