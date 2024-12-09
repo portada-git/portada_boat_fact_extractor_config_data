@@ -1,7 +1,7 @@
 {
     "boatdata.extractor": {
         "field_version": "boat_fact-00.00.01",
-        "constants": {"arrival_port": "Barcelona"},
+        "constants": {"arrival_port": "Barcelona","news_section":"E"},
         "config": [
             {
                 "approach_type": "regex",
@@ -108,6 +108,12 @@
                         {
                             "calculator": "DataFromConstantCalculator",
                             "init_data": ["constants"],
+                            "key": "news_section",
+                            "literalParams": ["news_section"]
+                        },
+                        {
+                            "calculator": "DataFromConstantCalculator",
+                            "init_data": ["constants"],
                             "key": "travel_arrival_port",
                             "literalParams": ["arrival_port"]
                         },
@@ -169,7 +175,78 @@
                     "main_regex": "boat_fact"
                 }
             }
-        ]
+        ],
+        "csv_view":{
+            "field_separator":";",
+            "fields":[
+                {
+                    "field":"publication_date",
+                    "type":"date_as_int",
+                },
+                {
+                    "field":"news_section",
+                    "type":"s",
+                },
+                {
+                    "field":"travel_departure_date",
+                    "type":"d",
+                },
+                {
+                    "field":"travel_duration",
+                    "type":"joined_field",
+                    "fields":["travel_duration_value", "travel_duration_unit"]
+                },
+                {
+                    "field":"travel_arrival_date",
+                    "type":"d",
+                },
+                {
+                    "field":"travel_departure_port",
+                    "type":"s",
+                },
+                {
+                    "field":"travel_port_of_call_list",
+                    "type":"s",
+                },
+                {
+                    "field":"travel_arrival_port",
+                    "type":"s",
+                },
+                {
+                    "field":"ship_type",
+                    "type":"s",
+                },
+                {
+                    "field":"ship_name",
+                    "type":"s",
+                },
+                {
+                    "field":"ship_tons",
+                    "type":"joined_field",
+                    "fields":["ship_tons_capacity","ship_tons_unit"]
+                },
+                {
+                    "field":"ship_flag",
+                    "type":"s",
+                },
+                {
+                    "field":"master_name",
+                    "type":"s",
+                },
+                {
+                    "field":"cargo_list",
+                    "type":"s",
+                },
+                {
+                    "field":"ship_name",
+                    "type":"s",
+                },
+                {
+                    "field":"parsed_text",
+                    "type":"s",
+                }
+            ]
+        }
     },
     "boatcosta.extractor": {
         "field_version": "boat_fact-00.00.01",
