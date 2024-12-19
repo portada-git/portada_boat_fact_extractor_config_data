@@ -336,6 +336,47 @@
                     "main_regex": "unknown_boat_fact"
                 }
             }
-        ]
+        ],
+        "csv_view":{
+            "field_separator":";",
+            "fields":[
+                {
+                    "field":"publication_date",
+                    "type":"date_as_int",
+                },
+                {
+                    "field":"news_section",
+                    "type":"s",
+                },
+                {
+                    "field":"travel_arrival_date",
+                    "type":"d",
+                },
+                {
+                    "field":"travel_arrival_port",
+                    "type":"s",
+                },
+                {
+                    "field":"ship_origin_area",
+                    "type":"s",
+                },
+                {
+                    "field":"ship_amount",
+                    "type":"i",
+                },
+                {
+                    "field":"ship_flag",
+                    "type":"s",
+                },
+                {
+                    "field":"cargo_list",
+                    "type":"s",
+                },
+                {
+                    "field":"parsed_text",
+                    "type":"s",
+                }
+            ]
+        }
     }
 }
