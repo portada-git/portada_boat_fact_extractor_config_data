@@ -1,7 +1,373 @@
 {
-    "extractor":{
-        "field_version": "boat_fact-00.00.00",
-        "constants": {"arrival_port":"La Habana"},
-        "config":[]
+    "boatdata.extractor": {
+        "field_version": "boat_fact-00.00.01",
+        "constants": {"arrival_port": "La Habana","news_section":"E"},
+        "config": [
+            {
+                "approach_type": "regex",
+                "configuration": {
+                    "max_groups": 15,
+                    "fields_to_extract": [
+                        {
+                            "temporary_field": true,
+                            "default_value": "y",
+                            "copy_last_value": true,
+                            "key": "time_of_arrival"
+                        },
+                        {
+                            "temporary_field": true,
+                            "default_value": "mercante",
+                            "copy_last_value": true,
+                            "key": "purposeType"
+                        },
+                        {
+                            "default_value": "????",
+                            "copy_last_value": false,
+                            "key": "ship_flag"
+                        }
+                    ],
+                    "fields_to_calculate": [
+                        {
+                            "calculator": "TimeOfArrivalRelativeToPublicationCalculator",
+                            "temporary_field": true,
+                            "init_data": [
+                                "configuration",
+                                "parser_id"
+                            ],
+                            "fieldParams": ["extracted_data.time_of_arrival"],
+                            "key": "time_of_arrival"
+                        },
+                        {
+                            "calculator": "ElapsedTimeFromArrivalToPublicationCalculator",
+                            "temporary_field": true,
+                            "fieldParams": ["extracted_data.time_of_arrival"],
+                            "key": "elapsed_days_from_arrival"
+                        }
+                    ],
+                    "main_regex": "flag"
+                }
+            },
+            {
+                "approach_type": "regex",
+                "configuration": {
+                    "max_groups": 5,
+                    "fields_to_extract": [
+                        {
+                            "default_value": "????",
+                            "copy_last_value": false,
+                            "key": "travel_departure_port"
+                        },
+                        {
+                            "default_value": "??",
+                            "copy_last_value": false,
+                            "key": "travel_duration_value"
+                        },
+                        {
+                            "default_value": "?",
+                            "copy_last_value": true,
+                            "key": "travel_duration_unit"
+                        },
+                        {
+                            "default_value": "????",
+                            "copy_last_value": false,
+                            "key": "ship_type"
+                        },
+                        {
+                            "default_value": "????",
+                            "copy_last_value": false,
+                            "key": "ship_name"
+                        },
+                        {
+                            "default_value": "????",
+                            "copy_last_value": false,
+                            "key": "master_role"
+                        },
+                        {
+                            "default_value": "????",
+                            "copy_last_value": false,
+                            "key": "master_name"
+                        },
+                        {
+                            "temporary_field": true,
+                            "default_value": "t.",
+                            "copy_last_value": false,
+                            "key": "ship_tons_unit"
+                        },
+                        {
+                            "default_value": "????",
+                            "copy_last_value": false,
+                            "key": "ship_tons_capacity"
+                        },
+                        {
+                            "default_value": "????",
+                            "copy_last_value": false,
+                            "key": "cargo_list"
+                        }
+                    ],
+                    "fields_to_calculate": [
+                        {
+                            "calculator": "DataFromConstantCalculator",
+                            "init_data": ["constants"],
+                            "key": "news_section",
+                            "literalParams": ["news_section"]
+                        },
+                        {
+                            "calculator": "DataFromConstantCalculator",
+                            "init_data": ["constants"],
+                            "key": "travel_arrival_port",
+                            "literalParams": ["arrival_port"]
+                        },
+                        {
+                            "calculator": "PortOfCallsFromOriginPortCalculator",
+                            "init_data": [
+                                "configuration",
+                                "parser_id",
+                                "extracted_data"
+                            ],
+                            "params": [{
+                                "type": "fieldName",
+                                "value": "travel_departure_port"
+                            }],
+                            "key": "travel_port_of_call_list"
+                        },
+                        {
+                            "calculator": "ReplaceIdemByValueCalculator",
+                            "init_data": [
+                                "configuration",
+                                "parser_id"
+                            ],
+                            "fieldParams": [
+                                "extracted_data.travel_duration_value",
+                                "last_extracted_data.travel_duration_value"
+                            ],
+                            "key": "travel_duration_value"
+                        },
+                        {
+                            "calculator": "ReplaceIdemByValueCalculator",
+                            "init_data": [
+                                "configuration",
+                                "parser_id"
+                            ],
+                            "fieldParams": [
+                                "extracted_data.travel_duration_unit",
+                                "last_extracted_data.travel_duration_unit"
+                            ],
+                            "key": "travel_duration_unit"
+                        },
+                        {
+                            "calculator": "PreviousDateFromElapsedDaysCalculator",
+                            "fieldParams": [
+                                "extracted_data.elapsed_days_from_arrival",
+                                "extracted_data.publication_date"
+                            ],
+                            "key": "travel_arrival_date"
+                        },
+                        {
+                            "calculator": "PreviousDateFromElapsedTimeCalculator",
+                            "fieldParams": [
+                                "extracted_data.travel_duration_value",
+                                "extracted_data.travel_duration_unit",
+                                "extracted_data.travel_arrival_date"
+                            ],
+                            "key": "travel_departure_date"
+                        }
+                    ],
+                    "main_regex": "boat_fact_dm"
+                }
+            }
+        ],
+        "csv_view":{
+            "field_separator":";",
+            "fields":[
+                {
+                    "field":"publication_date",
+                    "type":"date_as_int",
+                },
+                {
+                    "field":"news_section",
+                    "type":"s",
+                },
+                {
+                    "field":"travel_departure_date",
+                    "type":"d",
+                },
+                {
+                    "field":"travel_duration",
+                    "type":"joined_field",
+                    "fields":["travel_duration_value", "travel_duration_unit"]
+                },
+                {
+                    "field":"travel_arrival_date",
+                    "type":"d",
+                },
+                {
+                    "field":"travel_departure_port",
+                    "type":"s",
+                },
+                {
+                    "field":"travel_port_of_call_list",
+                    "type":"s",
+                },
+                {
+                    "field":"travel_arrival_port",
+                    "type":"s",
+                },
+                {
+                    "field":"ship_type",
+                    "type":"s",
+                },
+                {
+                    "field":"ship_name",
+                    "type":"s",
+                },
+                {
+                    "field":"ship_flag",
+                    "type":"s",
+                },
+                {
+                    "field":"cargo_list",
+                    "type":"s",
+                },
+                {
+                    "field":"ship_name",
+                    "type":"s",
+                },
+                {
+                    "field":"parsed_text",
+                    "type":"s",
+                }
+            ]
+        }
+    },
+    "boatcosta.extractor": {
+        "field_version": "boat_fact-00.00.01",
+        "constants": {"arrival_port": "Barcelona"},
+        "config": [
+            {
+                "approach_type": "regex",
+                "configuration": {
+                    "max_groups": 15,
+                    "fields_to_extract": [
+                        {
+                            "temporary_field": true,
+                            "default_value": "y",
+                            "copy_last_value": true,
+                            "key": "time_of_arrival"
+                        },
+                        {
+                            "temporary_field": true,
+                            "default_value": "mercante",
+                            "copy_last_value": true,
+                            "key": "purposeType"
+                        },
+                        {
+                            "default_value": "????",
+                            "copy_last_value": false,
+                            "key": "ship_flag"
+                        }
+                    ],
+                    "fields_to_calculate": [
+                        {
+                            "calculator": "TimeOfArrivalRelativeToPublicationCalculator",
+                            "temporary_field": true,
+                            "init_data": [
+                                "configuration",
+                                "parser_id"
+                            ],
+                            "fieldParams": ["extracted_data.time_of_arrival"],
+                            "key": "time_of_arrival"
+                        },
+                        {
+                            "calculator": "ElapsedTimeFromArrivalToPublicationCalculator",
+                            "temporary_field": true,
+                            "fieldParams": ["extracted_data.time_of_arrival"],
+                            "key": "elapsed_days_from_arrival"
+                        }
+                    ],
+                    "main_regex": "flag"
+                }
+            },
+            {
+                "approach_type": "regex",
+                "configuration": {
+                    "max_groups": 9,
+                    "fields_to_extract": [
+                        {
+                            "default_value": "??",
+                            "copy_last_value": false,
+                            "key": "ship_amount"
+                        },
+                        {
+                            "default_value": "??",
+                            "copy_last_value": false,
+                            "key": "ship_origin_area"
+                        },
+                        {
+                            "default_value": "????",
+                            "copy_last_value": true,
+                            "key": "cargo_list"
+                        }
+                    ],
+                    "fields_to_calculate": [
+                        {
+                            "calculator": "DataFromConstantCalculator",
+                            "init_data": ["constants"],
+                            "key": "travel_arrival_port",
+                            "literalParams": ["arrival_port"]
+                        },
+                        {
+                            "calculator": "PreviousDateFromElapsedDaysCalculator",
+                            "fieldParams": [
+                                "extracted_data.elapsed_days_from_arrival",
+                                "extracted_data.publication_date"
+                            ],
+                            "key": "travel_arrival_date"
+                        }
+                    ],
+                    "main_regex": "unknown_boat_fact"
+                }
+            }
+        ],
+        "csv_view":{
+            "field_separator":";",
+            "fields":[
+                {
+                    "field":"publication_date",
+                    "type":"date_as_int",
+                },
+                {
+                    "field":"news_section",
+                    "type":"s",
+                },
+                {
+                    "field":"travel_arrival_date",
+                    "type":"d",
+                },
+                {
+                    "field":"travel_arrival_port",
+                    "type":"s",
+                },
+                {
+                    "field":"ship_origin_area",
+                    "type":"s",
+                },
+                {
+                    "field":"ship_amount",
+                    "type":"i",
+                },
+                {
+                    "field":"ship_flag",
+                    "type":"s",
+                },
+                {
+                    "field":"cargo_list",
+                    "type":"s",
+                },
+                {
+                    "field":"parsed_text",
+                    "type":"s",
+                }
+            ]
+        }
     }
 }
