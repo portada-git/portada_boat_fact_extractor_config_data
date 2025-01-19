@@ -1,5 +1,5 @@
-^(.*{##embarcaciones##} {##llegadas##} .{2,7} {##puerto##}.*)\n+({##mercantes##}) (.*)\.?$
-^( )?({##mercantes##}) (.*)\.?\n+
+^(.*{##embarcaciones##} {##llegadas##} .{2,7} {##puerto##}.*)\n+({##traversing_entrances##}) (.*)\.?$
+^( )?({##traversing_entrances##})(.*)\.?\n+
 ^( )?({##idem##}) ?(.{4,20})\.?\n+(?=De)
 ^( )?({##idem##}) (.{4,15})\.?\n+
 ^( )?( )?([^\d\W]{5,15})\.?\n+
