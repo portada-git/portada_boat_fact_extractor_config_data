@@ -1,2 +1,2 @@
-^(.*?{##sanidad_del_puerto##})(.*?)\n(.*)$
-^(.*?\n)((?:[\{| ]{0,3}(?:{##embarcaciones##})\s+(?:(?:{##llegadas##})|(?:.*{##puerto##}))\s+[^\n]*)\s?{##mercantes##} *\w{3,}[s5]?[\W\s]+)(.*)$
+^(.*?{##havana_port##})(.*?)\n(.*)$
+^(.*?\n)((?:[\{| ]{0,3}(?:{##embarcaciones##})\s+(?:(?:{##llegadas##})|(?:.*{##puerto##}))\s+[^\n]*)\s?{##traversing_entrances##} *\w{3,}[s5]?[\W\s]+)(.*)$
