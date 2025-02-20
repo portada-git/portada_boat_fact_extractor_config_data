@@ -1,24 +1,207 @@
-{
-    "extractor":{
-        "field_version": "boat_fact-00.00.00",
-        "constants": {"arrival_port":"Marseille"},
-        "config":[
-            {
-                "approach_type":"regex",
-                "configuration":{
-                    "main_regex":"date",
-                    "max_groups":1,
-                    "fields_to_extract":[
-                        {
-                            "temporary_field": true,
-                            "key":"day_of_arrival",
-                            "copy_last_value":true,
-                            "default_value":"?"
-                        }
-                
-                    ]
-                }
+{"extractor": {
+    "field_version": "boat_fact-00.00.01",
+    "constants": {"arrival_port": "Marseille", "news_section":"U"},
+    "config": [
+        {
+            "approach_type": "regex",
+            "configuration": {
+                "max_groups": 1,
+                "fields_to_extract": [{
+                    "default_value": "?",
+                    "copy_last_value": true,
+                    "key": "travel_arrival_date"
+                }],
+                "fields_to_calculate": [
+                    {
+                        "calculator": "DataFromConstantCalculator",
+                        "init_data": ["constants"],
+                        "key": "news_section",
+                        "literalParams": ["news_section"]
+                    }],
+                "main_regex": "date"
             }
-        ]
-    }
-}
+        },
+        {
+            "approach_type": "regex",
+            "configuration": {
+                "max_groups": 15,
+                "fields_to_extract": [
+                    {
+                        "default_value": "?",
+                        "copy_last_value": false,
+                        "key": "travel_departure_port"
+                    },
+                    {
+                        "default_value": "?",
+                        "copy_last_value": false,
+                        "key": "travel_departure_date"
+                    },
+                    {
+                        "default_value": "?",
+                        "copy_last_value": false,
+                        "key": "travel_port_of_call_list"
+                    },
+                    {
+                        "default_value": "?",
+                        "copy_last_value": false,
+                        "key": "ship_type"
+                    },
+                    {
+                        "default_value": "fr",
+                        "copy_last_value": false,
+                        "key": "ship_flag"
+                    },
+                    {
+                        "default_value": "?",
+                        "copy_last_value": false,
+                        "key": "ship_name"
+                    },
+                    {
+                        "default_value": "????",
+                        "copy_last_value": false,
+                        "key": "ship_tons_capacity"
+                    },
+                    {
+                        "temporary_field": true,
+                        "default_value": "t.",
+                        "copy_last_value": false,
+                        "key": "ship_tons_unit"
+                    },
+                    {
+                        "default_value": "c.",
+                        "copy_last_value": false,
+                        "key": "master_role"
+                    },
+                    {
+                        "default_value": "????",
+                        "copy_last_value": false,
+                        "key": "master_name"
+                    },
+                    {
+                        "default_value": "????",
+                        "copy_last_value": false,
+                        "key": "cargo_list"
+                    },
+                    {
+                        "default_value": "????",
+                        "copy_last_value": false,
+                        "key": "cargo_merchant_name"
+                    },
+                    {
+                        "default_value": "????",
+                        "copy_last_value": false,
+                        "key": "ship_agent_name"
+                    },
+                    {
+                        "default_value": "????",
+                        "copy_last_value": false,
+                        "key": "info_behind"
+                    }
+                ],
+                "fields_to_calculate": [
+                    {
+                        "calculator": "DataFromConstantCalculator",
+                        "init_data": ["constants"],
+                        "key": "travel_arrival_port",
+                        "literalParams": ["arrival_port"]
+                    },
+                    {
+                    "calculator": "PortOfCallsFromOriginPortCalculator",
+                    "init_data": [
+                        "configuration",
+                        "parser_id",
+                        "extracted_data"
+                    ],
+                    "params": [{
+                        "type": "fieldName",
+                        "value": "travel_departure_port"
+                    },
+                    {
+                        "type": "literal",
+                    "value": "(?:\\s+et\\s+)|(?:\\s*[;,]\\s+)|(?:\\s+[;,e][t]\\s*)"
+                    }],
+                    "key": "travel_port_of_call_list"
+                }],
+                "main_regex": "boat_fact"
+            }
+        }
+    ],
+    "csv_view":{
+            "field_separator":";",
+            "fields":[
+                {
+                    "field":"publication_date",
+                    "type":"date_as_int"
+                },
+                {
+                    "field":"news_section",
+                    "type":"s"
+                },
+                {
+                    "field":"travel_departure_date",
+                    "type":"d"
+                },
+                {
+                    "field":"travel_arrival_date",
+                    "type":"d"
+                },
+                {
+                    "field":"travel_departure_port",
+                    "type":"s"
+                },
+                {
+                    "field":"travel_port_of_call_list",
+                    "type":"s"
+                },
+                {
+                    "field":"travel_arrival_port",
+                    "type":"s"
+                },
+                {
+                    "field":"ship_type",
+                    "type":"s"
+                },
+                {
+                    "field":"ship_name",
+                    "type":"s"
+                },
+                {
+                    "field":"ship_tons",
+                    "type":"joined_field",
+                    "fields":["ship_tons_capacity","ship_tons_unit"]
+                },
+                {
+                    "field":"ship_flag",
+                    "type":"s"
+                },
+                {
+                    "field":"master_name",
+                    "type":"s"
+                },
+                {
+                    "field":"cargo_list",
+                    "type":"s"
+                },
+                {
+                    "field":"cargo_merchant_name",
+                    "type":"s"
+                },
+                {
+                    "field":"ship_agent_name",
+                    "type":"s"
+                },
+                {
+                    "field":"info_behind",
+                    "type":"s"
+                },
+                {
+                    "field":"unparsed_text",
+                    "type":"s"
+                },
+                {
+                    "field":"parsed_text",
+                    "type":"s"
+                }
+            ]
+        }
+}}
