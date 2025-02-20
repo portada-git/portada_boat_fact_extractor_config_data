@@ -1,0 +1,2 @@
+^\s*{##ocr_letter##}+?[-\s]{##ocr_letter##}+?
+^\s*{##ocr_letter##}+?

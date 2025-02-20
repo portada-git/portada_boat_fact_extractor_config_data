@@ -1,0 +1,2 @@
+{##ocr_digit##}+\s{##ocr_letter##}+?
+{##ocr_digit##}er\s{##ocr_letter##}+?
