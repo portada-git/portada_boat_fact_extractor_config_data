@@ -181,15 +181,15 @@
             "fields":[
                 {
                     "field":"publication_date",
-                    "type":"date_as_int",
+                    "type":"date_as_int"
                 },
                 {
                     "field":"news_section",
-                    "type":"s",
+                    "type":"s"
                 },
                 {
                     "field":"travel_departure_date",
-                    "type":"d",
+                    "type":"d"
                 },
                 {
                     "field":"travel_duration",
@@ -198,27 +198,27 @@
                 },
                 {
                     "field":"travel_arrival_date",
-                    "type":"d",
+                    "type":"d"
                 },
                 {
                     "field":"travel_departure_port",
-                    "type":"s",
+                    "type":"s"
                 },
                 {
                     "field":"travel_port_of_call_list",
-                    "type":"s",
+                    "type":"s"
                 },
                 {
                     "field":"travel_arrival_port",
-                    "type":"s",
+                    "type":"s"
                 },
                 {
                     "field":"ship_type",
-                    "type":"s",
+                    "type":"s"
                 },
                 {
                     "field":"ship_name",
-                    "type":"s",
+                    "type":"s"
                 },
                 {
                     "field":"ship_tons",
@@ -227,23 +227,23 @@
                 },
                 {
                     "field":"ship_flag",
-                    "type":"s",
+                    "type":"s"
                 },
                 {
                     "field":"master_name",
-                    "type":"s",
+                    "type":"s"
                 },
                 {
                     "field":"cargo_list",
-                    "type":"s",
+                    "type":"s"
                 },
                 {
                     "field":"ship_name",
-                    "type":"s",
+                    "type":"s"
                 },
                 {
                     "field":"parsed_text",
-                    "type":"s",
+                    "type":"s"
                 }
             ]
         }
