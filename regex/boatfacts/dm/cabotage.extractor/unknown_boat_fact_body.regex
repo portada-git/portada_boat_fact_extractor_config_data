@@ -1,0 +1,1 @@
+ENTRADAS DE CABOTAGE.*\n+{##boat_fact_from##}\s+({##boat_fact_boat_name_dm##})\s+({##boat_fact_boat_type##})[w]*.*?({##boat_fact_responsible_position_dm##})\s*({##personal_name##})[,.]*\s*((?:(?:c[oeèéóò][mn](?:\s+|.{0,5}{##ocr_digit##}))|(?:(?:\s+|.{0,5}{##ocr_digit##}.*à))|(?:[eco]n lastre)|(?:á las)).*)
