@@ -6,7 +6,7 @@
             {
                 "approach_type": "regex",
                 "configuration": {
-                    "max_groups": 15,
+                    "max_groups": 2,
                     "fields_to_extract": [
                         {
                             "temporary_field": true,
@@ -21,9 +21,10 @@
                             "key": "purposeType"
                         },
                         {
+                            "temporary_field": true,
                             "default_value": "????",
                             "copy_last_value": false,
-                            "key": "ship_flag"
+                            "key": "date_at_newspaper"
                         }
                     ],
                     "fields_to_calculate": [
@@ -221,15 +222,15 @@
                     "type":"s",
                 },
                 {
-                    "field":"ship_flag",
-                    "type":"s",
-                },
-                {
                     "field":"cargo_list",
                     "type":"s",
                 },
                 {
-                    "field":"ship_name",
+                    "field":"master_role",
+                    "type":"s",
+                },
+                {
+                    "field":"master_name",
                     "type":"s",
                 },
                 {
@@ -239,31 +240,39 @@
             ]
         }
     },
-    "boatcosta.extractor": {
+    "cabotage.extractor": {
         "field_version": "boat_fact-00.00.01",
-        "constants": {"arrival_port": "Barcelona"},
+        "constants": {"arrival_port": "La Habana"},
         "config": [
             {
                 "approach_type": "regex",
                 "configuration": {
-                    "max_groups": 15,
+                    "max_groups": 10,
                     "fields_to_extract": [
                         {
-                            "temporary_field": true,
-                            "default_value": "y",
-                            "copy_last_value": true,
-                            "key": "time_of_arrival"
-                        },
-                        {
-                            "temporary_field": true,
-                            "default_value": "mercante",
-                            "copy_last_value": true,
-                            "key": "purposeType"
+                            "default_value": "????",
+                            "copy_last_value": false,
+                            "key": "ship_type"
                         },
                         {
                             "default_value": "????",
                             "copy_last_value": false,
-                            "key": "ship_flag"
+                            "key": "ship_name"
+                        },
+                        {
+                            "default_value": "????",
+                            "copy_last_value": false,
+                            "key": "master_role"
+                        },
+                        {
+                            "default_value": "????",
+                            "copy_last_value": false,
+                            "key": "master_name"
+                        },
+                        {
+                            "default_value": "????",
+                            "copy_last_value": false,
+                            "key": "cargo_list"
                         }
                     ],
                     "fields_to_calculate": [
@@ -284,46 +293,6 @@
                             "key": "elapsed_days_from_arrival"
                         }
                     ],
-                    "main_regex": "flag"
-                }
-            },
-            {
-                "approach_type": "regex",
-                "configuration": {
-                    "max_groups": 9,
-                    "fields_to_extract": [
-                        {
-                            "default_value": "??",
-                            "copy_last_value": false,
-                            "key": "ship_amount"
-                        },
-                        {
-                            "default_value": "??",
-                            "copy_last_value": false,
-                            "key": "ship_origin_area"
-                        },
-                        {
-                            "default_value": "????",
-                            "copy_last_value": true,
-                            "key": "cargo_list"
-                        }
-                    ],
-                    "fields_to_calculate": [
-                        {
-                            "calculator": "DataFromConstantCalculator",
-                            "init_data": ["constants"],
-                            "key": "travel_arrival_port",
-                            "literalParams": ["arrival_port"]
-                        },
-                        {
-                            "calculator": "PreviousDateFromElapsedDaysCalculator",
-                            "fieldParams": [
-                                "extracted_data.elapsed_days_from_arrival",
-                                "extracted_data.publication_date"
-                            ],
-                            "key": "travel_arrival_date"
-                        }
-                    ],
                     "main_regex": "unknown_boat_fact"
                 }
             }
@@ -332,39 +301,23 @@
             "field_separator":";",
             "fields":[
                 {
-                    "field":"publication_date",
-                    "type":"date_as_int",
-                },
-                {
-                    "field":"news_section",
+                    "field":"ship_type",
                     "type":"s",
                 },
                 {
-                    "field":"travel_arrival_date",
-                    "type":"d",
-                },
-                {
-                    "field":"travel_arrival_port",
+                    "field":"ship_name",
                     "type":"s",
                 },
                 {
-                    "field":"ship_origin_area",
+                    "field":"master_role",
                     "type":"s",
                 },
                 {
-                    "field":"ship_amount",
-                    "type":"i",
-                },
-                {
-                    "field":"ship_flag",
+                    "field":"master_name",
                     "type":"s",
                 },
                 {
                     "field":"cargo_list",
-                    "type":"s",
-                },
-                {
-                    "field":"parsed_text",
                     "type":"s",
                 }
             ]
