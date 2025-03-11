@@ -234,6 +234,14 @@
                     "type":"s",
                 },
                 {
+                    "field":"ship_tons_unit",
+                    "type":"s",
+                },
+                {
+                    "field":"ship_tons_capacity",
+                    "type":"s",
+                },
+                {
                     "field":"parsed_text",
                     "type":"s",
                 }
