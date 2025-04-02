@@ -6,7 +6,7 @@
             {
                 "approach_type": "regex",
                 "configuration": {
-                    "max_groups": 15,
+                    "max_groups": 18,
                     "fields_to_extract": [
                         {
                             "temporary_field": true,
