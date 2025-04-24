@@ -1,2 +1,2 @@
-{##ocr_letter##}{0,2}{##ocr_digit##}+\s{##ocr_letter##}+?
-{##ocr_letter##}{0,2}{##ocr_digit##}er\s{##ocr_letter##}+?
+{##ocr_letter##}{0,2}\s*?{##ocr_digit##}+\s{##ocr_letter##}+?
+{##ocr_letter##}{0,2}\s*?{##ocr_digit##}er\s{##ocr_letter##}+?
