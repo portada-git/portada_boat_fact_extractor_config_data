@@ -1,4 +1,4 @@
-(?:sur lest)
+(?:[sa]ur lest)
 (?:{##is_avec##}.*?(?={##is_cargo_merchant##}))
 (?:{##is_avec##}.*?(?={##is_ship_agent##}))
 (?:{##is_avec##}.*?(?={##is_info_phrase##}|$)|)
