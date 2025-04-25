@@ -10,6 +10,35 @@
                     "temporary_field": true,
                     "default_value": "?",
                     "copy_last_value": true,
+                    "key": "quarantine"
+                }],
+                "fields_to_calculate": [
+                    {
+                        "calculator": "MsCallerCalculator",
+                        "init_data":[{
+                            "protocol":"http",
+                            "host":"localhost",
+                            "port":"5000",
+                            "pref":"api",
+ 		                    "entry_point":"get_quarantine"
+                        }],
+ 		                "fieldParams": [
+ 		                	"extracted_data.quarantine"
+ 		                ],
+                        "key":"quarantine"
+                    }
+                ],
+                "main_regex": "arrivees"
+            }
+        },
+        {
+            "approach_type": "regex",
+            "configuration": {
+                "max_groups": 1,
+                "fields_to_extract": [{
+                    "temporary_field": true,
+                    "default_value": "?",
+                    "copy_last_value": true,
                     "key": "travel_arrival_date"
                 }],
                 "fields_to_calculate": [
@@ -61,6 +90,7 @@
                         "key": "travel_departure_date"
                     },
                     {
+                        "temporary_field": true,
                         "default_value": "?",
                         "copy_last_value": false,
                         "key": "travel_port_of_call_list"
@@ -130,23 +160,6 @@
                         "literalParams": ["arrival_port"]
                     },
                     {
-                        "calculator": "PortOfCallsFromOriginPortCalculator",
-                        "init_data": [
-                            "configuration",
-                            "parser_id",
-                            "extracted_data"
-                        ],
-                        "params": [{
-                            "type": "fieldName",
-                            "value": "travel_departure_port"
-                        },
-                        {
-                            "type": "literal",
-                            "value": "(?:\\s+et\\s+)|(?:\\s*[;,]\\s+)|(?:\\s+[;,e][t]\\s*)"
-                        }],
-                        "key": "travel_port_of_call_list"
-                    },
-                    {
                         "calculator": "MsCallerCalculator",
                         "init_data":[{
                             "protocol":"http",
@@ -175,6 +188,22 @@
  		                	"extracted_data.travel_arrival_date"
  		                ],
                         "key":"travel_duration_value"
+                    },
+                    {
+                        "calculator": "MsCallerCalculator",
+                        "init_data":[{
+                            "protocol":"http",
+                            "host":"localhost",
+                            "port":"5000",
+                            "pref":"api",
+ 		                    "entry_point":"get_port_of_call_list"
+                        }],
+ 		                "fieldParams": [
+                            "extracted_data.publication_date",
+ 		                	"extracted_data.travel_departure_date",
+ 		                	"extracted_data.travel_port_of_call_list"
+ 		                ],
+                        "key":"travel_port_of_call_list"
                     }
                 ],
                 "main_regex": "boat_fact"
