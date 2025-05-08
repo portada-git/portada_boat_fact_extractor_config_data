@@ -1,0 +1,1 @@
+{##hyphen_proper_noun##}(?:\s*(?:(?:{##hyphen_proper_noun##}(?!c[oeèéóò][mn] ))|(?:d[eio][s5]?)|(?:la)|(?:[yv]))){0,7}

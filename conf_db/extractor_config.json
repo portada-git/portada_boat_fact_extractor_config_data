@@ -6,7 +6,7 @@
             {
                 "approach_type": "regex",
                 "configuration": {
-                    "max_groups": 18,
+                    "max_groups": 21,
                     "fields_to_extract": [
                         {
                             "temporary_field": true,
@@ -42,6 +42,18 @@
                             "temporary_field": true,
                             "fieldParams": ["extracted_data.time_of_arrival"],
                             "key": "elapsed_days_from_arrival"
+                        },
+                        {
+                            "calculator": "ReplaceIdemByValueCalculator",
+                            "init_data": [
+                                "configuration",
+                                "parser_id"
+                            ],
+                            "fieldParams": [
+                                "extracted_data.ship_flag",
+                                "last_extracted_data.ship_flag"
+                            ],
+                            "key": "ship_flag"
                         }
                     ],
                     "main_regex": "flag"
@@ -183,6 +195,19 @@
                                 "extracted_data.travel_arrival_date"
                             ],
                             "key": "travel_departure_date"
+                        },
+                        {
+                            "calculator": "GetFlagPropertyForExtrangerasCalculator",
+                            "init_data": [
+                                "configuration",
+                                "parser_id",
+                                "extracted_data"
+                            ],
+                            "fieldParams": [
+                                "extracted_data.ship_flag",
+                                "extracted_data.ship_type"
+                            ],
+                            "key": "ship_flag"
                         }
                     ],
                     "main_regex": "boat_fact"
@@ -377,7 +402,7 @@
                 },
                 {
                     "field":"travel_departure_date",
-                    "type":"d"
+                    "type":"s"
                 },
                 {
                     "field":"travel_duration",
@@ -478,6 +503,12 @@
                         }
                     ],
                     "fields_to_calculate": [
+                        {
+                            "calculator": "DataFromConstantCalculator",
+                            "init_data": ["constants"],
+                            "key": "news_section",
+                            "literalParams": ["news_section"]
+                        },
                         {
                             "calculator": "TimeOfArrivalRelativeToPublicationCalculator",
                             "temporary_field": true,

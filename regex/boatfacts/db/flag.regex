@@ -1,5 +1,6 @@
 ^(.*{##embarcaciones##} {##llegadas##}.*{##puerto##}.*)\n+(?:({##mercantes##}) ?)(.*?)\.?$
 ^(.*{##embarcaciones##}.*(?:(?:{##llegadas##})|(?:{##puerto##})).*(?:(?:{##anteayer##})|(?:{##ayer##})|(?:{##hoy##})).*)\n+(?:({##mercantes##}) ?)(.*?)\.?$
+^(.*{9,14}.*(?:(?:{##llegadas##})|(?:{##puerto##})).*(?:(?:{##anteayer##})|(?:{##ayer##})|(?:{##hoy##})).*)\n+(?:({##mercantes##}) ?)(.*?)\.?$
 ^( )?({##mercantes##}) (.*?)\.?\n+
 ^( )?({##idem##}) ?(.{4,20})\.?\n+(?=De)
 ^( )?({##idem##}) (.{4,15})\.?\n+
