@@ -1,1 +1,1 @@
-(ARRIVEES.*?)
+((?:ARRIVEES.*|MOUVEMENT.*))
