@@ -401,6 +401,10 @@
                     "type":"s"
                 },
                 {
+                    "field":"publication_edition",
+                    "type":"s"
+                },
+                {
                     "field":"travel_departure_date",
                     "type":"s"
                 },
@@ -751,6 +755,10 @@
                 {
                     "field":"publication_date",
                     "type":"date_as_int"
+                },
+                {
+                    "field":"publication_edition",
+                    "type":"s"
                 },
                 {
                     "field":"news_section",
