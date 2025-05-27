@@ -10,7 +10,7 @@
                     "fields_to_extract": [
                         {
                             "temporary_field": true,
-                            "default_value": "y",
+                            "default_value": "t",
                             "copy_last_value": true,
                             "key": "time_of_arrival"
                         },
