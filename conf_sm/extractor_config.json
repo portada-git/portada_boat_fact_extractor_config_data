@@ -15,13 +15,8 @@
                 "fields_to_calculate": [
                     {
                         "calculator": "MsCallerCalculator",
-                        "init_data":[{
-                            "protocol":"http",
-                            "host":"localhost",
-                            "port":"5000",
-                            "pref":"api",
- 		                    "entry_point":"get_quarantine"
-                        }],
+                        "context": "python",
+                        "entry_point":"get_quarantine",
  		                "fieldParams": [
  		                	"extracted_data.quarantine"
  		                ],
@@ -56,13 +51,8 @@
                     },
                     {
                         "calculator": "MsCallerCalculator",
-                        "init_data":[{
-                            "protocol":"http",
-                            "host":"localhost",
-                            "port":"5000",
-                            "pref":"api",
- 		                    "entry_point":"get_arrival_date_from_publication_date"
-                        }],
+                        "context": "python",
+                        "entry_point":"get_arrival_date_from_publication_date",
  		                "fieldParams": [
  		                	"extracted_data.publication_date",
  		                	"extracted_data.travel_arrival_date"
@@ -161,13 +151,8 @@
                     },
                     {
                         "calculator": "MsCallerCalculator",
-                        "init_data":[{
-                            "protocol":"http",
-                            "host":"localhost",
-                            "port":"5000",
-                            "pref":"api",
- 		                    "entry_point":"get_departure_date"
-                        }],
+                        "context": "python",
+                        "entry_point":"get_departure_date",
  		                "fieldParams": [
  		                	"extracted_data.publication_date",
  		                	"extracted_data.travel_departure_date"
@@ -176,13 +161,8 @@
                     },
                     {
                         "calculator": "MsCallerCalculator",
-                        "init_data":[{
-                            "protocol":"http",
-                            "host":"localhost",
-                            "port":"5000",
-                            "pref":"api",
- 		                    "entry_point":"get_duration_value"
-                        }],
+                        "context": "python",
+                        "entry_point":"get_duration_value",
  		                "fieldParams": [
  		                	"extracted_data.travel_departure_date",
  		                	"extracted_data.travel_arrival_date"
@@ -191,13 +171,8 @@
                     },
                     {
                         "calculator": "MsCallerCalculator",
-                        "init_data":[{
-                            "protocol":"http",
-                            "host":"localhost",
-                            "port":"5000",
-                            "pref":"api",
- 		                    "entry_point":"get_port_of_call_list"
-                        }],
+                        "context": "python",
+                        "entry_point":"get_port_of_call_list",
  		                "fieldParams": [
                             "extracted_data.publication_date",
  		                	"extracted_data.travel_departure_date",
