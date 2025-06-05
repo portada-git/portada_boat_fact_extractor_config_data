@@ -15,8 +15,10 @@
                 "fields_to_calculate": [
                     {
                         "calculator": "MsCallerCalculator",
-                        "context": "python",
-                        "entry_point":"get_quarantine",
+                        "init_data":[{
+                            "context": "python",
+                            "entry_point":"api/get_quarantine",
+                        }],
  		                "fieldParams": [
  		                	"extracted_data.quarantine"
  		                ],
@@ -51,8 +53,10 @@
                     },
                     {
                         "calculator": "MsCallerCalculator",
-                        "context": "python",
-                        "entry_point":"get_arrival_date_from_publication_date",
+                        "init_data":[{
+                            "context": "python",
+                            "entry_point":"api/get_arrival_date_from_publication_date",
+                        }],
  		                "fieldParams": [
  		                	"extracted_data.publication_date",
  		                	"extracted_data.travel_arrival_date"
@@ -151,8 +155,10 @@
                     },
                     {
                         "calculator": "MsCallerCalculator",
-                        "context": "python",
-                        "entry_point":"get_departure_date",
+                        "init_data":[{
+                            "context": "python",
+                            "entry_point":"api/get_departure_date",
+                        }],
  		                "fieldParams": [
  		                	"extracted_data.publication_date",
  		                	"extracted_data.travel_departure_date"
@@ -161,8 +167,10 @@
                     },
                     {
                         "calculator": "MsCallerCalculator",
-                        "context": "python",
-                        "entry_point":"get_duration_value",
+                        "init_data":[{
+                            "context": "python",
+                            "entry_point":"api/get_duration_value",
+                        }],
  		                "fieldParams": [
  		                	"extracted_data.travel_departure_date",
  		                	"extracted_data.travel_arrival_date"
@@ -171,8 +179,10 @@
                     },
                     {
                         "calculator": "MsCallerCalculator",
-                        "context": "python",
-                        "entry_point":"get_port_of_call_list",
+                        "init_data":[{
+                            "context": "python",
+                            "entry_point":"api/get_port_of_call_list",
+                        }],
  		                "fieldParams": [
                             "extracted_data.publication_date",
  		                	"extracted_data.travel_departure_date",
