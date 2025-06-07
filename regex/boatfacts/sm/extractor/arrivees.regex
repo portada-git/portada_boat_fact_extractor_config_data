@@ -1,1 +1,1 @@
-((?:ARRIVEES.*))
+((?:{##is_arrivees##}.*))
