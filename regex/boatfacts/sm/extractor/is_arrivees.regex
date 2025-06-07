@@ -1,8 +1,4 @@
-^\sARRIVEES
-^\sARRIVÉES
-^\sARRIVERS
-^\sARRIVERES
-^\sArrivees
-^\sArrivées
-^\sArrivers
-^\sArriveres
+^ARRIV[EÉ][EÉR]S
+^ARRIV[EÉ]R[EÉ]S
+^Arriv[eé][eér]s
+^Arriv[eé]r[eé]s
