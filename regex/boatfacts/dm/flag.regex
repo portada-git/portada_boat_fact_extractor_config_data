@@ -1,1 +1,2 @@
 ^( )?({##traversing_entrances##})(?:.*\n)*(.*\s?\d{1,2}\.?)\s?[-]D
+^( )?({##traversing_entrances##})(?:.*\n)*(.*\s?\d{1,2}\.?)\s?[:.]?\n
