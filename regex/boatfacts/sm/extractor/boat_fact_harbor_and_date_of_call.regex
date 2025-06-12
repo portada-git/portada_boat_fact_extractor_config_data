@@ -1,2 +1,2 @@
 (?:et autres poris)?
-(?:(?:{##ocr_letter##}+?[.,:;\-\s]+)+?{##ocr_digit##}+?\s{##ocr_letter##}+?[.,:;\s]+?)*?
+(?:(?:{##ocr_letter##}+?[.,:;\-\s]+)+?{##ocr_digit##}*?(?:er)?\s{##is_month##}+?[.,:;\s]+?)*?
