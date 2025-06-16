@@ -1,2 +1,2 @@
-[i1f]d\.\s*
-{##hyphen_proper_noun##}(?:\s+{##hyphen_proper_noun##})*\s*(?: [y»«] (?:(?:su [cf]arrera)|(?:escalas))\s+)?
+[i1f]d\. *
+{##hyphen_proper_noun##}(?: +{##hyphen_proper_noun##})* *(?: [y»«] (?:(?:su [cf]arrera)|(?:escalas)) +)?
