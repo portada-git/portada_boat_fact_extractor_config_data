@@ -1,2 +1,2 @@
-(?:et autres poris)?
-(?:(?:{##ocr_letter##}+?[.,:;\-\s]+)+?{##ocr_digit##}*?(?:er)?\s{##is_month##}+?[.,:;\s]+?)*?
+(?:et (?:(?:les|autres) ports d'(?:Italie|Espague)|autres(?: por[ti]s)?))?
+(?:(?:{##ocr_letter##}+?[.,:;\-\s]+)+?{##ocr_digit##}*?(?:[eo]r)?[.,:;\-\s]*{##is_month##}[.,:;\-\s]+?)*?

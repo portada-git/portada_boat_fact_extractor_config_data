@@ -1,1 +1,1 @@
-{##ocr_letter##}{0,2}\s*?{##ocr_digit##}*?(?:er)?\s*{##is_month##}{1}
+{##ocr_letter##}{0,2}\s*?{##ocr_digit##}*?(?:[eo]r)?\s*{##is_month##}{1}
