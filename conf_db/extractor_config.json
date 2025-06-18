@@ -62,7 +62,7 @@
             {
                 "approach_type": "regex",
                 "configuration": {
-                    "max_groups": 10,
+                    "max_groups": 40,
                     "fields_to_extract": [
                         {
                             "default_value": "????",
