@@ -1,4 +1,8 @@
 (?:\n\s*D[Eeo][sS5g?][Ppq].{2,3}[Hh].[Dd].[sS5g?]? .{1,10} {##ocr_digit_no_blanc##}{1,2}.*)
+(?:\nD?ESPACHAD.S?\s{0,3}(?:(?:\.\-)|(?:\:)) {0,3}Para.*)
+(?:\nDESPACHADAS.*\n)
+(?:\n\s*S[AÀÁ]LID[ÀAÁ][sS5g?]? .{1,10} {##ocr_digit_no_blanc##}{1,2}.*)
+(?:\nS?[ÁÀA]LID[AÁÀ]S?\s{0,3}(?:(?:\.\-)|(?:\:)) {0,3}Para.*)
 (?:\n\s*{##boat_fact_vessel##} d[eo][sS5g?][pq].{2,3}h.d.[sS5g?]? .{1,10} {##ocr_digit_no_blanc##}{1,2}.*)
 (?:\n\s*C[eao](?:(?:rr)|(?:m))[aoe][oeo] de Ma.{2,5}d d..(?: d.a)? {##ocr_digit_no_blanc##}{1,2} d. .* d. {##ocr_digit_no_blanc##}{2,4})
 (?:\n\s*[A-Z]{3}[A-Z\d ]*)

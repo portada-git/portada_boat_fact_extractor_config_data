@@ -1,1 +1,1 @@
-(^.*?)({##end_detector_body##}\W*\n.*+$)
+(^.*?)({##end_detector_body##}\W*\n?.*+$)
