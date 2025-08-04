@@ -1,4 +1,4 @@
-E[mnMN][bB].*[Eeo][Ss5]
+E[mnMN][bB].{5,10}[Eeo][Ss5]
 [EA][mnMN].{3,5}[cC][i¡Il1][oOec][nN][Eeosc][sS]
 [EA].{1,3}[bB][aA][rR][cC][aA].{2,4}[Nn][Ee][Ss]
 .{1,3}[Bb][Aa][Rr][Cc].{1,2}[Cc][i¡Il1][oOec][nN][Eeosc].

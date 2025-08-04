@@ -1,1 +1,1 @@
-^(?:\s*{##unknown_boat_fact_body##})$
+^(?: *{##unknown_boat_fact_body##})$

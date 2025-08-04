@@ -486,7 +486,7 @@
             {
                 "approach_type": "regex",
                 "configuration": {
-                    "max_groups": 15,
+                    "max_groups": 21,
                     "fields_to_extract": [
                         {
                             "temporary_field": true,
@@ -536,7 +536,7 @@
             {
                 "approach_type": "regex",
                 "configuration": {
-                    "max_groups": 9,
+                    "max_groups": 12,
                     "fields_to_extract": [
                         {
                             "default_value": "??",

@@ -1,4 +1,5 @@
-(?: d[eao]) la cos.?a [^\d\n]{4,30}
-(?: d[eao]) +(?:.. +)?cos.a [^\d\n]{4,30}
-(?: .{4,30}) Pr[il]n[ce][il][pn][aw][ld][oca][.,\) ]*(?= con )[^\d\n]{0,4}
-(?: .{4,20})de este Principado[.,\) ]? [^\d\n]{4,10}
+(?:(?:men[oe]re?s? )?d[eao]) la cos.?a[.,]? ?[^\d\n]{0,30}(?= (?:(?:con)|(?:en)) )
+(?:(?:men[oe]re?s? )?d[eao]) +(?:.. +)?cos.a[.,]? ?[^\d\n]{0,30}(?= (?:(?:con)|(?:en)) )
+(?:.{4,30}) Pr[il]n[ce][il][pn][aw][ld][oca][.,\) ]*(?= (?:(?:con)|(?:en)) )[^\d\n]{0,4}
+(?:.{4,20})de este Principado[.,\) ]? [^\d\n]{0,10}
+men[oe]re?s?[.,\) ]?(?= (?:(?:con)|(?:en)) )[^\d\n]{0,10}
