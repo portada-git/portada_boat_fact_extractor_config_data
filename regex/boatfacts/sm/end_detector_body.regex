@@ -1,3 +1,3 @@
-[NKMSXR]AVIR[EÉ]S\s*[EÉ]XP[EÉ]DI[EÉ]S\s*POUR
-STAVIR[EÉ]S\s*[EÉ]XP[EÉ]DI[EÉ]S\s*POUR
-[DB][EÉ][PF]ARTS
+NOTA
+(?:[NKMSXR]|ST)AVIR[EÉ][Ss]\s*[EÉ]XP[EÉ]D[Il!]?[EÉ]S\s*(?:PO[UC]R)?
+[DBG][EÉ][PF]A(?:[RS]T[SE]?)?
