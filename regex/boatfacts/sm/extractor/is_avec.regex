@@ -1,4 +1,4 @@
-[as][vr][ceo][ceods]
-[as]\s[vr][ceo][ceods]
-[as]\s[ceo][ceods]
-av
+\b[as]\s?[vr]?[cćeo][cćeods]?
+\bav
+[sa][ua][rt][,.\s]+?[lJi]es[ti]
+en\s+?[lJ]es[ti]

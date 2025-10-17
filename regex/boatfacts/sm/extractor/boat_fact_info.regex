@@ -1,1 +1,1 @@
-(?:{##is_info_phrase##}.*|)$
+(?:{##is_info_phrase##}.*)?$

@@ -1,1 +1,2 @@
-{##boat_fact_from##}\s({##boat_fact_arrival_date##})[.,:;\s]*\n
+{##boat_fact_from##}\s*((?:{##boat_fact_arrival_date##})?)[.,:;\s]*\n
+{##boat_fact_from##} *()(?=[A-Z]{##ocr_letter##}{3,34})

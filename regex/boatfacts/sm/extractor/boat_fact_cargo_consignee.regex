@@ -1,2 +1,1 @@
-(?:{##is_cargo_merchant##}.*?(?={##is_ship_agent##}))
-(?:{##is_cargo_merchant##}.*?(?={##is_info_phrase##}|$)|)
+(?:{##is_cargo_merchant##}[\s\S]*?(?={##is_ship_agent##}|{##is_info_phrase##}|{##is_new_entry##}|$))?
