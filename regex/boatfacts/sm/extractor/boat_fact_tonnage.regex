@@ -1,1 +1,1 @@
-(?:(?:\b\w+\b\s+)*?[dJac][esouac]o?[.,:;\s]+(?:\b\w+\b\s+)*?({##ocr_digit##}+?)[.,:;\s]*(?:\b\w+\b\s+)*?({##is_tonnage##}))?
+(?:(?:\b\w+\b\s+)*?(?:[dJac][esouac]o?)?[.,:;\s]+(?:\b\w+\b\s+)*?({##ocr_digit##}+?)[.,:;\-\s]*(?:\b\w+\b\s+)*?({##is_tonnage##}))?

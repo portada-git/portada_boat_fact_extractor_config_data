@@ -42,21 +42,6 @@
                         "init_data": ["constants"],
                         "key": "travel_duration_unit",
                         "literalParams": ["travel_duration_unit"]
-                    },
-                    {
-                        "calculator": "MsCallerCalculator",
-                        "init_data":[{
-                            "protocol":"http",
-                            "host":"localhost",
-                            "port":"5000",
-                            "pref":"api",
- 		                    "entry_point":"get_arrival_date_from_publication_date"
-                        }],
- 		                "fieldParams": [
- 		                	"extracted_data.publication_date",
- 		                	"extracted_data.travel_arrival_date"
- 		                ],
-                        "key":"travel_arrival_date"
                     }
                 ],
                 "main_regex": "arrivees"
@@ -142,6 +127,35 @@
                     }
                 ],
                 "fields_to_calculate": [
+                    {
+                        "calculator": "MsCallerCalculator",
+                        "init_data":[{
+                            "protocol":"http",
+                            "host":"localhost",
+                            "port":"5000",
+                            "pref":"api",
+ 		                    "entry_point":"get_quarantine"
+                        }],
+ 		                "fieldParams": [
+ 		                	"extracted_data.quarantine"
+ 		                ],
+                        "key":"quarantine"
+                    },
+                    {
+                        "calculator": "MsCallerCalculator",
+                        "init_data":[{
+                            "protocol":"http",
+                            "host":"localhost",
+                            "port":"5000",
+                            "pref":"api",
+ 		                    "entry_point":"get_arrival_date_from_publication_date"
+                        }],
+ 		                "fieldParams": [
+ 		                	"extracted_data.publication_date",
+ 		                	"extracted_data.travel_arrival_date"
+ 		                ],
+                        "key":"travel_arrival_date"
+                    },
                     {
                         "calculator": "DataFromConstantCalculator",
                         "init_data": ["constants"],
