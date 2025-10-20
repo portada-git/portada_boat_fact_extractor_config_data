@@ -1,2 +1,2 @@
-(?:et (?:(?:les|autres) ports d'(?:Italie|Espague)|autres(?: por[ti]s)?))?
-(?:(?:{##ocr_letter##}+?[.,:;\-\s]+)+?{##ocr_digit##}*?(?:[eo]r)?[.,:;\-\s]*{##is_month##}[.,:;\-\s]+?)*?
+(?:et (?:(?:les|autre[sa]) p?[oa]rts? d'(?:[Il][ti]a[lj]ie|Es(?:pa)?\s?g[un]e)|autre[sa](?: por[ti]s)?))?
+(?:(?:{##ocr_letter##}+?[.,:;\-\s]+?)+?{##ocr_digit##}{0,2}(?:[eo]r)?[.,:;\-\s]*?{##is_month##}{1}[.,:;\-\s]+?)*?

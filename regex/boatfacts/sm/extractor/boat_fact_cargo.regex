@@ -1,7 +1,1 @@
-(?:[sa][ua]r lest)
-(?:en lest)
-(?:{##is_avec##}.*?(?=(?:{##is_cargo_merchant##}|{##is_ship_agent##}|{##is_info_phrase##}|$)|))
-(?:{##is_avec##}.*?(?={##is_cargo_merchant##}))
-(?:{##is_avec##}.*?(?={##is_ship_agent##}))
-(?:{##is_avec##}.*?(?=(?:{##is_info_phrase##}|$)|))
-
+(?:{##is_avec##}[\s\S]*?(?=(?:{##is_cargo_merchant##}|{##is_ship_agent##}|{##is_info_phrase##}|{##is_new_entry##}|$)))?

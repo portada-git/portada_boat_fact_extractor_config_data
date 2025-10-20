@@ -1,1 +1,1 @@
-([cCeo](?:[aás]?[pn](?:i(?:t(?:[aá]ine)?)?)?|(?:ommand[eé](?:[eé])?)?))[.,:;\s]+?((?:[.,:;\s]*?{##ocr_letter##}+?)+?)
+([CcÇçceèéêëoa](?:[aás]?[pns](?:i(?:t(?:[aá]ine)?)?)?|(?:ommand[eé](?:[eé])?)?))[.,:;\s]+?([\s\S]*?(?=(?:{##is_avec##}|{##is_cargo_merchant##}|{##is_ship_agent##}|{##is_info_phrase##}|{##is_new_entry##})))

@@ -1,1 +1,1 @@
-{##ocr_letter##}+?(?:[.-]+?{##ocr_letter##}+?)*?
+{##ocr_letter##}+?(?:[.-]+?{##ocr_letter##}+?){0,2}
