@@ -1,2 +1,2 @@
-^( )?({##traversing_entrances##})(?:.*\n)*(.*\s?\d{1,2}\.?)\s?[-]D
-^( )?({##traversing_entrances##})(?:.*\n)*(.*\s?\d{1,2}\.?)\s?[:.]?\n
+({##traversing_entrances##})(?:.*\n)*([EFMAMJASOND]\w{4,10}\s?\d{1,2}\.?)\s?[-](?=D[eoa])
+({##traversing_entrances##})(?:.*\n)*([D]\w{1,2}\s?\d{1,2}?)\s?(?=:\n[E]\w*)

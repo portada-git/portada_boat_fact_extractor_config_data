@@ -2,4 +2,4 @@ ENTRADAS DE TRAVESIA.*\n
 Entradas de tr\W*.*\n
 \w* DE TRAVE\W*.*\n
 \w* de trave\W*.*\n
-ENTRA\W*.*\n
+ENTRAD\W*.*\s?\n?
