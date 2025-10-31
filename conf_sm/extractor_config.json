@@ -389,17 +389,20 @@
                         "key": "cargo_list"
                     },
                     {
-                        "calculator": "AddConsigneeToCargoListCalculator",
-                        "init_data": [
-                            "configuration",
-                            "parser_id"
-                        ],
-                        "fieldParams": [
-                            "extracted_data.temp_cargo_list",
+                        "calculator": "MsCallerCalculator",
+                        "init_data":[{
+                            "protocol":"http",
+                            "host":"localhost",
+                            "port":"5000",
+                            "pref":"api",
+ 		                    "entry_point":"add_consignee_to_cargo_list"
+                        }],
+ 		                "fieldParams": [
+ 		                	"extracted_data.temp_cargo_list",
                             "extracted_data.cargo_merchant_name"
-                        ],
-                        "key": "cargo_list"
-                    }                        
+ 		                ],
+                        "key":"cargo_list"
+                    }                     
                 ]
             }                
         }
