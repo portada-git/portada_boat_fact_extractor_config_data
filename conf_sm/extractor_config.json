@@ -108,7 +108,7 @@
                     {
                         "default_value": "????",
                         "copy_last_value": false,
-                        "key": "cargo_list"
+                        "key": "textual_cargo_list"
                     },
                     {
                         "default_value": "????",
@@ -212,6 +212,196 @@
                 ],
                 "main_regex": "boat_fact"
             }
+        },
+        {
+            "approach_type": "openai",
+            "source_field": "textual_cargo_list",
+            "configuration": {
+                "microservice_initializer_file":"/etc/.portada_microservices/ms_init.properties",
+                "model": "gpt-4o-mini",
+                "model_config": {
+                    "temperature": 0,
+                    "max_tokens": 9000,
+                    "top_p": 0,
+                    "frequency_penalty": 0,
+                    "presence_penalty": 0
+                },
+                "ai_instructions": {
+                    "messages_config": {
+                        "system": {
+                            "role": "system",
+                            "content": "Tu es un assistant expert dans l’extraction d’informations structurées concernant la cargaison transportée par des navires. Tu dois répondre UNIQUEMENT avec un objet JSON valide contenant les champs demandés. Si tu ne trouves pas d’information pour un champ donné, tu dois répondre avec la valeur null pour ce champ."
+                        },
+                        "template": {
+                            "role": "user",
+                            "content": "Extrait les informations suivantes concernant la cargaison transportée par bateau, décrite dans la note, en utilisant le format JSON exact suivant : {json_template}. Voici la définition de chaque clé : {field_definitions}. Exemples : {input_example}. Texte à partir duquel extraire les informations : {input_text}"
+                        }
+                    },
+                    "json_template": {
+                        "cargo_list":[],
+                        "obs":null
+                    },
+                    "json_schema":{
+                      "type": "json_schema",
+                      "json_schema": {
+                        "name": "more_entry_information",
+                        "strict": true,
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "cargo_list": {
+                              "type": "array",
+                              "description": "Liste des marchandises transportées.",
+                              "nullable": true,
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "cargo": {
+                                    "type": "array",
+                                    "description": "Liste des marchandises transportées.",
+                                    "nullable": true,
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "cargo_quantity": {
+                                          "type": "string",
+                                          "description": "Représente la quantité totale de la cargaison sous forme numérique. Elle est exprimée comme une chaîne de caractères afin d’éviter les erreurs dans le JSON si la quantité contient des lettres au lieu de chiffres en raison d’erreurs typographiques ou de transcription de l’OCR. Si le nombre n’est pas présent, le symbole '?' doit être attribué.",
+                                          "nullable": true
+                                        },
+                                        "cargo_unit": {
+                                          "type": "string",
+                                          "description": "Exprime les unités de mesure dans lesquelles la cargaison est indiquée. Exemple : 'cargo_unit': 'partie', 'cargo_unit': 'sacs', 'cargo_unit': 'balles', 'cargo_unit': 'fut', 'cargo_unit': 'schew'.",
+                                          "nullable": true
+                                        },
+                                        "cargo_commodity": {
+                                          "type": "string",
+                                          "description": "Exprime les différents produits ou types de marchandises transportés par le navire. Exemple : 'cargo_commodity': 'cristaux', 'cargo_commodity': 'id', 'cargo_commodity': 'vin'.",
+                                          "nullable": true
+                                        }
+                                      },
+                                      "required": ["cargo_quantity", "cargo_unit", "cargo_commodity"],
+                                      "additionalProperties": false
+                                    }
+                                  }
+                                },
+                                "required": ["cargo"],
+                                "additionalProperties": false
+                              }
+                            },
+                            "obs": {
+                              "type": "string",
+                              "description": "Notes ou commentaires supplémentaires abordant des aspects non pris en compte dans les variables enregistrées, fournissant des informations contextuelles ou pertinentes sur l’événement.",
+                              "nullable": true
+                            }
+                          },
+                          "required": [
+                            "cargo_list",
+                            "obs"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "examples": {
+                        "EXEMPLE 1": {
+                            "input": "avec blé,",
+                            "output": "{'cargo_list':[{'cargo':[{'cargo_quantity':None, 'cargo_unit':None, 'cargo_commodity':'blé'}]}],'obs':None}"
+                        },
+                        "EXEMPLE 2": {
+                            "input": "avec charbon de bois.",
+                            "output": "{'cargo_list':[{'cargo':[{'cargo_quantity':None, 'cargo_unit':None, 'cargo_commodity':'charbon de bois'}]}],'obs':None}"
+                        },
+                        "EXEMPLE 3": {
+                            "input": "avec 90 ton. os, 20 ton. graines et 32 ton. vieux fer,",
+                            "output": "{'cargo_list':[{'cargo':[{'cargo_quantity':'90', 'cargo_unit':'ton', 'cargo_commodity':'os'}, {'cargo_quantity':'20', 'cargo_unit':'ton', 'cargo_commodity':'graines'}, {'cargo_quantity':'32', 'cargo_unit':'ton', 'cargo_commodity':'vieux fer'}]}], 'obs':None}"
+                        },
+                        "EXEMPLE 4": {
+                            "input": "avec 40 ton. os, une partie vieux fer, une dite grésil et autres,",
+                            "output": "{'cargo_list':[{'cargo':[{'cargo_quantity':'40', 'cargo_unit':'ton', 'cargo_commodity':'os'}, {'cargo_quantity':'une', 'cargo_unit':'partie', 'cargo_commodity':'vieux fer'}, {'cargo_quantity':'une', 'cargo_unit':'dite', 'cargo_commodity':'grésil'}, {'cargo_quantity':None, 'cargo_unit':None, 'cargo_commodity':'autres'}]}], 'obs':None}"
+                        },
+                        "EXEMPLE 5": {
+                            "input": "avec 800 douzaines planches,",
+                            "output": "{'cargo_list':[{'cargo':[{'cargo_quantity':'800', 'cargo_unit':'douzaines', 'cargo_commodity':'planches'}]}], 'obs':None}"
+                        },
+                        "EXEMPLE 6": {
+                            "input": "avec 556 poutres, 6000 douelles,",
+                            "output": "{'cargo_list':[{'cargo':[{'cargo_quantity':'556', 'cargo_unit':None, 'cargo_commodity':'poutres'}, {'cargo_quantity':'6000', 'cargo_unit':None, 'cargo_commodity':'douelles'}]}], 'obs':None}"
+                        },
+                        "EXEMPLE 7": {
+                            "input": "en lest.",
+                            "output": "{'cargo_list':[{'cargo':[{'cargo_quantity':None, 'cargo_unit':None, 'cargo_commodity':'en lest'}]}], 'obs':None}"   
+                        },
+                        "EXEMPLE 8": {
+                            "input": "sur lest.",
+                            "output": "{'cargo_list':[{'cargo':[{'cargo_quantity':None, 'cargo_unit':None, 'cargo_commodity':'sur lest'}]}], 'obs':None}"   
+                        },
+                        "EXEMPLE 9": {
+                            "input": "avec 4100 cuirs secs, 387 balles peaux, 2000 cornes,",
+                            "output": "{'cargo_list':[{'cargo':[{'cargo_quantity':'4100', 'cargo_unit':None, 'cargo_commodity':'cuirs secs'}, {'cargo_quantity':'387', 'cargo_unit':'balles', 'cargo_commodity':'peaux'}, {'cargo_quantity':'2000', 'cargo_unit':None, 'cargo_commodity':'cornes'}]}], 'obs':None}"
+                        },
+                        "EXEMPLE 10": {
+                            "input": "avec 141 couffins, 244 caisses raisins secs, 490 bonbonnes vides et autres",
+                            "output": "{'cargo_list':[{'cargo':[{'cargo_quantity':'141', 'cargo_unit':None, 'cargo_commodity':'couffins'}, {'cargo_quantity':'244', 'cargo_unit':'caisses', 'cargo_commodity':'raisins secs'}, {'cargo_quantity':None, 'cargo_unit':None, 'cargo_commodity':'autres'}]}], 'obs':None}"   
+                        },
+                        "EXEMPLE 11": {
+                            "input": "avec 390 balles coton, 297 fardes gomme, 124 sacs sucre, 11 balles oignons et cornes, 40 balles peaux de bœuf,",
+                            "output": "{'cargo_list':[{'cargo':[{'cargo_quantity':'390', 'cargo_unit':'balles', 'cargo_commodity':'coton'}, {'cargo_quantity':'297', 'cargo_unit':'fardes', 'cargo_commodity':'gomme'}, {'cargo_quantity':'124', 'cargo_unit':'sacs', 'cargo_commodity':'sucre'}, {'cargo_quantity':'11', 'cargo_unit':'balles', 'cargo_commodity':'oignons et cornes'}, {'cargo_quantity':'40', 'cargo_unit':'balles', 'cargo_commodity':'peaux de bœuf'}]}], 'obs':None}"   
+                        },
+                        "EXEMPLE 12": {
+                            "input": "avec (78 quint.) blé,",
+                            "output": "{'cargo_list':[{'cargo':[{'cargo_quantity':'78', 'cargo_unit':'quint', 'cargo_commodity':'blé'}]}], 'obs':None}"   
+                        },
+                        "EXEMPLE 13": {
+                            "input": "avec 149 ton. div. marchandises",
+                            "output": "{'cargo_list':[{'cargo':[{'cargo_quantity':'149', 'cargo_unit':'ton', 'cargo_commodity':'div. marchandises'}]}], 'obs':None}"   
+                        },
+                        "EXEMPLE 14": {
+                            "input": "avec bois à brûler.La Ciotat, 14 courant, bat. Marie-Claire, de 24 ton., cap. R., avec pavés.",
+                            "output": "{'cargo_list':[{'cargo':[{'cargo_quantity':None, 'cargo_unit':None, 'cargo_commodity':' bois à brûler'}]}], 'obs':'La Ciotat, 14 courant, bat. Marie-Claire, de 24 ton., cap. R., avec pavés.'}"   
+                        }
+                    },
+                    "field_definitions":{
+                        "cargo_list": "Liste d'objets décrivant les marchandises. Ainsi, cargo_list est une liste ou un tableau où chaque élément doit contenir la liste des caractéristiques des marchandises qui le composent. Ces caractéristiques doivent être la quantité, l'unité de mesure et le type de marchandise. Chaque objet de la liste doit respecter la structure suivante : {'cargo': [{'cargo_quantity': 'tableau de nombres', 'cargo_unit': 'unité (ton|tons|tonn|fut|partie|douzaines|balles|bal|caisses|sacs|schew|sch|boisseaux|barils|hectolitres|hect|coils|boucauts|quilots|quil|fardes|quintaux|quint|cantares|dito|dite)', 'cargo_commodity': 'type de marchandise'}]}. La quantité sera exprimée sous forme de chaîne de caractères en raison des erreurs de reconnaissance optique de caractères (OCR) qui confondent souvent les chiffres avec des lettres à la prononciation similaire. De plus, cargo_quantity peut contenir des nombres écrits en lettres, comme 'une', 'deux' ou 'trois'.Cela vous permet d'indiquer la valeur extraite du texte analysé, que la transcription OCR soit correcte ou non. Voici un exemple de cargo_list : ['cargo':[{'cargo_quantity': 20, 'cargo_unit': 'fut', 'cargo_commodity': 'huile' }]}, {'cargo':[{ 'cargo_quantity': 'une', 'cargo_unit': 'partie', 'cargo_commodity': 'vin' }, { 'cargo_quantity': '200', 'cargo_unit': 'ton', 'cargo_commodity': 'fer' }]}]. Si la marchandise est de l'argent, la quantité doit correspondre à la devise transportée et la marchandise doit être définie sur 'argent'. Par exemple, l'expression '3000 dollars' doit être interprétée comme suit : { 'cargo': [ { 'cargo_quantity': '3000', 'cargo_unit': 'dollars', 'cargo_commodity': 'argent' }]}. Certaines marchandises (cargo_commodity) ne précisent pas d'unité, par exemple 'douelles' ou 'douves', ou, si des unités existent, elles n'ont pas été spécifiées (exemple : '2945 douelles') ; dans ces cas, 'cargo_unit' sera 'None' et 'cargo_commodity' sera 'douelles' ou 'douves'. Lorsque l'entrée ne spécifie pas d'unité, la valeur par défaut est 'None' (Exemple : '3 blocs papier, 200 douelles et 9 blocs fer' -> {'cargo_list':[{'cargo':[{'cargo_quantity': '3', 'cargo_unit': 'blocs', 'cargo_commodity': 'papier' }]}, {'cargo':[{ 'cargo_quantity': '200', 'cargo_unit': None, 'cargo_commodity': 'douelles' }, { 'cargo_quantity': 9, 'cargo_unit': 'blocs', 'cargo_commodity': 'fer' }]}]}). Dans certains cas, la cargaison des navires n'est pas constituée de marchandises, mais de ballast (pierres, terre, etc.) servant à la navigation. Lorsqu'un navire transporte du ballast au lieu de marchandises, cela est indiqué par la mention 'en lest'. Le résultat que vous devez renvoyer dans ce cas est : {'cargo_list':[{'cargo':[{'cargo_quantity': None, 'cargo_unit': None, 'cargo_commodity': 'en lest' }]}]}.",
+                        "obs": "Notes ou commentaires supplémentaires abordant des aspects non pris en compte dans les variables enregistrées, fournissant des informations contextuelles ou pertinentes sur l’événement."
+                    }
+                },
+                "fields_to_assign":[
+                    {
+                        "source":"textual_cargo_list",
+                        "target":"temp_cargo_list"
+                    },
+                    {
+                        "source":"obs",
+                        "target":"ai_observations"
+                    }
+                ],
+                "fields_to_calculate": [
+                    {
+                        "calculator": "ReplaceIdemByValueInItemFromListCalculator",
+                        "init_data": [
+                            "configuration",
+                            "parser_id"
+                        ],
+                        "fieldParams": [
+                            "extracted_data.cargo_list",
+                            "last_extracted_data.cargo_list"
+                        ],
+                        "key": "cargo_list"
+                    },
+                    {
+                        "calculator": "AddConsigneeToCargoListCalculator",
+                        "init_data": [
+                            "configuration",
+                            "parser_id"
+                        ],
+                        "fieldParams": [
+                            "extracted_data.temp_cargo_list",
+                            "extracted_data.cargo_merchant_name"
+                        ],
+                        "key": "cargo_list"
+                    }                        
+                ]
+            }                
         }
     ],
     "csv_view":{
