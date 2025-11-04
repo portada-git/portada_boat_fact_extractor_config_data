@@ -10,7 +10,7 @@
                     "temporary_field": true,
                     "default_value": "?",
                     "copy_last_value": true,
-                    "key": "quarantine"
+                    "key": "quarantine_text"
                 },{
                     "temporary_field": true,
                     "default_value": "?",
@@ -25,7 +25,7 @@
  		                    "entry_point":"api/get_quarantine"
                         }],
  		                "fieldParams": [
- 		                	"extracted_data.quarantine"
+ 		                	"extracted_data.quarantine_text"
  		                ],
                         "key":"quarantine"
                     },{
@@ -124,17 +124,6 @@
                     }
                 ],
                 "fields_to_calculate": [
-                    {
-                        "calculator": "MsCallerCalculator",
-                        "init_data":[{
-                            "context": "python",
- 		                    "entry_point":"api/get_quarantine"
-                        }],
- 		                "fieldParams": [
- 		                	"extracted_data.quarantine"
- 		                ],
-                        "key":"quarantine"
-                    },
                     {
                         "calculator": "MsCallerCalculator",
                         "init_data":[{
@@ -349,8 +338,8 @@
                 },
                 "fields_to_assign":[
                     {
-                        "source":"textual_cargo_list",
-                        "target":"temp_cargo_list"
+                        "source":"cargo_list",
+                        "target":"cargo_list"
                     },
                     {
                         "source":"obs",
@@ -377,7 +366,7 @@
  		                    "entry_point":"api/add_consignee_to_cargo_list"
                         }],
  		                "fieldParams": [
- 		                	"extracted_data.temp_cargo_list",
+ 		                	"extracted_data.cargo_list",
                             "extracted_data.cargo_merchant_name"
  		                ],
                         "key":"cargo_list"
