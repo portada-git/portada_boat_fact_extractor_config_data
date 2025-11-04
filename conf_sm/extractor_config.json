@@ -349,8 +349,8 @@
                 },
                 "fields_to_assign":[
                     {
-                        "source":"textual_cargo_list",
-                        "target":"temp_cargo_list"
+                        "source":"cargo_list",
+                        "target":"cargo_list"
                     },
                     {
                         "source":"obs",
@@ -377,7 +377,7 @@
  		                    "entry_point":"api/add_consignee_to_cargo_list"
                         }],
  		                "fieldParams": [
- 		                	"extracted_data.temp_cargo_list",
+ 		                	"extracted_data.cargo_list",
                             "extracted_data.cargo_merchant_name"
  		                ],
                         "key":"cargo_list"
