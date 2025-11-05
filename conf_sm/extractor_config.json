@@ -348,18 +348,6 @@
                 ],
                 "fields_to_calculate": [
                     {
-                        "calculator": "ReplaceIdemByValueInItemFromListCalculator",
-                        "init_data": [
-                            "configuration",
-                            "parser_id"
-                        ],
-                        "fieldParams": [
-                            "extracted_data.cargo_list",
-                            "last_extracted_data.cargo_list"
-                        ],
-                        "key": "cargo_list"
-                    },
-                    {
                         "calculator": "MsCallerCalculator",
                         "init_data":[{
                             "context": "python",
