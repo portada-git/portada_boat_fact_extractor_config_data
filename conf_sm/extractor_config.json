@@ -431,10 +431,6 @@
                 "style":"single_struct"
             },
             {
-                "field":"cargo_merchant_name",
-                "type":"s"
-            },
-            {
                 "field":"ship_agent_name",
                 "type":"s"
             },
