@@ -1,0 +1,2 @@
+(?:et (?:(?:les|autre[sa]) p?[oa]rts? d'(?:[Il][ti]a[lj]ie|Es(?:pa)?\s?g[un]e)|autre[sa](?: por[ti]s)?))?
+(?:(?:{##D##}{##E##}{##S##}?)?\s*?(?:{##ocr_letter##}+?[.,:;\-\s]+?)+?{##ocr_digit##}{0,2}(?:[eo]r)?[.,:;\-\s]*?{##is_month##}{1}[.,:;\-\s]+?)*?
