@@ -7,4 +7,4 @@ En
 \b[I1]\ba
 \bH\s
 a(?:(?:ll)|(?:y))ant
-\bavec
+\bavec\s+\d+\s+pass
