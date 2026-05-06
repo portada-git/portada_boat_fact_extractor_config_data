@@ -454,7 +454,7 @@
             ]
         }
     },
-    "extractor_1907": {
+    "extractor_1909": {
         "field_version": "boat_fact-00.00.01",
         "constants": {"arrival_port": "Marseille", "news_section":"U", "travel_duration_unit": "d"},
         "config": [
