@@ -444,6 +444,10 @@
                     "type":"b"
                 },
                 {
+                    "field": "ai_observations",
+                    "type": "s"
+                },
+                {
                     "field":"unparsed_text",
                     "type":"s"
                 },
@@ -897,6 +901,10 @@
                 {
                     "field":"quarantine",
                     "type":"b"
+                },
+                {
+                    "field": "ai_observations",
+                    "type": "s"
                 },
                 {
                     "field":"unparsed_text",
